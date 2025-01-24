@@ -27,5 +27,46 @@ public class EnemyComponent : MonoBehaviour
     public void UpdateState(EnemyState newState)
     {
         _currentState = newState;
+        switch (_currentState)
+        {
+            case EnemyState.Inactive:
+                DeactivateEnemy();
+                break;
+            case EnemyState.Chasing:
+                ChasePlayer();
+                break;
+            case EnemyState.Dying:
+                EnemyDie();
+                break;
+            case EnemyState.Stunned:
+                StunEnemy();
+                break;
+            default:
+                break;
+        }
+    }
+    public EnemyState GetCurrentState()
+    {
+        return _currentState;
+    }
+
+    private void DeactivateEnemy()
+    {
+        Debug.Log("DeactivateEnemy called!");
+    }
+
+    private void ChasePlayer()
+    {
+        Debug.Log("ChasePlayer called!");
+    }
+
+    private void EnemyDie()
+    {
+        Debug.Log("EnemyDie called!");
+    }
+
+    private void StunEnemy()
+    {
+        Debug.Log("StunEnemy called!");
     }
 }
