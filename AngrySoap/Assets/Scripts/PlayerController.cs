@@ -40,22 +40,6 @@ public class PlayerController : MonoBehaviour
         MoveWithLook();
     }
 
-    public void MovePlayer(){
-        Vector3 move = new(moveInput.x, 0, moveInput.y);
-        
-        if (move.magnitude > 1)
-        {
-            move.Normalize();
-        }
-
-        if(move != Vector3.zero)
-        {
-            VisualTransform.rotation = Quaternion.Slerp(VisualTransform.rotation, Quaternion.LookRotation(move), 0.15F);
-        }
-
-        transform.Translate(speed * Time.deltaTime * move, Space.World);
-    }
-
     public void MoveWithLook(){
         Ray ray = Camera.main.ScreenPointToRay(mouselook);
         if (Physics.Raycast(ray, out RaycastHit hit))
