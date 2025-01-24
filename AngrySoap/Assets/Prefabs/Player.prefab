@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5367047914525201620}
   - component: {fileID: 1492710471168864043}
   - component: {fileID: 6649236553743178242}
+  - component: {fileID: 3859175350726786171}
+  - component: {fileID: 5606627194848136175}
   - component: {fileID: 3503634317670577686}
   - component: {fileID: 2708940507656896049}
   m_Layer: 0
@@ -144,12 +146,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4bf7a7be9fe2b47900cad530708c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerWater: {fileID: 0}
+  waterCost: 1
   BulletSpawn: {fileID: 4354307932842906051}
   Bullet: {fileID: 5104116644707398841, guid: fb708d542de30bf4981e4fba7b231e80, type: 3}
   baseCoolDown: 0.5
   attackSpeed: 1
   canShoot: 1
   isShooting: 0
+--- !u!114 &3859175350726786171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994389963096404517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d480028670139c14fae3ac81b0fa9d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  water: 10
+  hasWater: 1
+--- !u!114 &5606627194848136175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994389963096404517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bee7554f7990949b4addbbf3d8f019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  isAlive: 1
 --- !u!136 &3503634317670577686
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -198,7 +230,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &4228623822638630237
 GameObject:

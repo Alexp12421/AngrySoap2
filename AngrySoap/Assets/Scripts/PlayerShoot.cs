@@ -7,6 +7,12 @@ public class PlayerShoot : MonoBehaviour
 {
 
     [SerializeField]
+    private PlayerWater playerWater;
+
+    [SerializeField]
+    private int waterCost = 1;
+
+    [SerializeField]
     private Transform BulletSpawn;
 
     [SerializeField]
@@ -23,6 +29,10 @@ public class PlayerShoot : MonoBehaviour
 
     [SerializeField]
     private bool isShooting = false;
+
+    private void Start() {
+        playerWater = GetComponent<PlayerWater>();
+    }
 
     public void OnShoot(InputAction.CallbackContext context)
     {
@@ -43,6 +53,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot(){
         GameObject bullet = Instantiate(Bullet, BulletSpawn.position, BulletSpawn.rotation) as GameObject;
+        bullet.AddComponent<BulletBubble>();
         bullet.GetComponent<Rigidbody>().AddForce(BulletSpawn.forward * 1000);
     }
 
@@ -60,7 +71,7 @@ public class PlayerShoot : MonoBehaviour
     {
         while (isShooting) // Continue while the button is held down
         {
-            if (canShoot)
+            if (canShoot && playerWater.HasWater() && playerWater.ConsumeWater(waterCost)) // Check if we can shoot
             {
                 Shoot();
                 StartCoroutine(ShootCooldown()); // Start the cooldown
