@@ -10,6 +10,9 @@ public class PlayerWater : MonoBehaviour
     [SerializeField]
     private bool hasWater = true;
 
+    [SerializeField]
+    GameObject moistureBar;
+
     public void AddWater(int amount){
         if(water <= 0){
             hasWater = true;
@@ -22,6 +25,7 @@ public class PlayerWater : MonoBehaviour
         {
             water -= amount;
             hasWater = water > 0;
+            moistureBar.transform.rotation = Quaternion.Euler(0, 0,-90 - 1.8f * water);
             return true;
         }
         else
