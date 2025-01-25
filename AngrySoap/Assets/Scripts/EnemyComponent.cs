@@ -166,4 +166,12 @@ public class EnemyComponent : MonoBehaviour
     {
         return maxBubblesThreshold <= _overlappedBubblesCount;
     }
+
+    public void DetonateBubbles()
+    {
+        if (_currentState is EnemyState.Chasing or EnemyState.Stunned)
+        {
+            
+        }
+    }
 }

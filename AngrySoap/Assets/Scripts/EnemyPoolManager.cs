@@ -82,4 +82,12 @@ public class NewBehaviourScript : MonoBehaviour
             Quaternion.identity);
         enemyComponent.UpdateState(EnemyState.Initialize);
     }
+
+    public void DetonateBubbles()
+    {
+        foreach (var enemyComponent in enemyComponents)
+        {
+            enemyComponent.DetonateBubbles();
+        }
+    }
 }
