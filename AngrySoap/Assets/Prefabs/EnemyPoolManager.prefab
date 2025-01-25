@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d9686a082f2a645a919f58a8476a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfEnemies: 10
-  numberOfEnemiesToHaveSpawned: 6
+  numberOfEnemies: 20
+  numberOfEnemiesToHaveSpawned: 8
   enemyType: {fileID: 7356448861476142391, guid: a07cb8eea792f8046837dd5cb464ac63,
     type: 3}
   enemyComponents: []
@@ -53,3 +53,4 @@ MonoBehaviour:
   MinSpawnDelay: 2.5
   MaxSpawnDelay: 4
   _curentSpawnDelay: 5
+  trashComponents: []
