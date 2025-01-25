@@ -14,6 +14,16 @@ public class Bubble : MonoBehaviour
                 Destroy(gameObject);
             }
             // Destroy(other.gameObject);
-        }   
+        }
+        else if (other.gameObject.CompareTag("Trash"))
+        {
+            TrashComponent trashComponent = other.GetComponent<TrashComponent>();
+            if (trashComponent)
+            {
+                int randomDamage = Random.Range(100, 150);
+                trashComponent.ApplyDamage(randomDamage);
+                Destroy(gameObject);
+            }
+        }
     }
 }

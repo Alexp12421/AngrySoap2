@@ -12,6 +12,15 @@ public class CanvasFollowPlayer : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.LookAt(Camera.main.transform.position);
+        Vector3 directionToCamera = Camera.main.transform.position - transform.position;
+
+        directionToCamera = -directionToCamera;
+
+        Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
+
+        if (transform.rotation != targetRotation)
+        {
+            transform.rotation = targetRotation;
+        }
     }
 }

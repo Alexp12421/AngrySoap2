@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -32,6 +33,11 @@ public class EnemyComponent : MonoBehaviour
     [SerializeField] private List<GameObject> bubbleSockets = new List<GameObject>();
     [SerializeField] private int maxBubblesThreshold = 0;
     private int _overlappedBubblesCount;
+    
+    [SerializeField] private int stunDuration = 2;
+    private float _remainingStunDuration = 0.0f;
+    
+    private Rigidbody _rigidbody;
 
 
     // Start is called before the first frame update
@@ -40,6 +46,7 @@ public class EnemyComponent : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _enemyHealthComponent = GetComponent<EnemyHealthComponent>();
         maxBubblesThreshold = bubbleSockets.Count;
+        _rigidbody = GetComponent<Rigidbody>();
         UpdateState(EnemyState.Inactive);
     }
 
@@ -56,10 +63,25 @@ public class EnemyComponent : MonoBehaviour
         {
             AttackPlayer();
         }
+
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (_currentState == EnemyState.Stunned && _remainingStunDuration > 0.0f)
+        {
+            _remainingStunDuration = math.clamp(_remainingStunDuration - Time.fixedDeltaTime, 0, stunDuration);
+            if (_remainingStunDuration <= 0.0f)
+            {
+                UpdateState(EnemyState.Chasing);
+            }
+        }
     }
 
     public void UpdateState(EnemyState newState)
     {
+        animator.speed = 1.0f;
         _currentState = newState;
         switch (_currentState)
         {
@@ -96,6 +118,7 @@ public class EnemyComponent : MonoBehaviour
 
     private void InitializeEnemy()
     {
+        gameObject.transform.LookAt(_playerGameObject.transform);
         gameObject.SetActive(true);
         _enemyHealthComponent.ResetHealth();
 
@@ -123,6 +146,9 @@ public class EnemyComponent : MonoBehaviour
     private void StunEnemy()
     {
         Debug.Log("StunEnemy called!");
+        _navMeshAgent.isStopped = true;
+        _remainingStunDuration = stunDuration;
+        animator.speed = 0.0f;
     }
 
     private void AttackPlayer()
@@ -161,6 +187,10 @@ public class EnemyComponent : MonoBehaviour
                         break;
                     }
                 }
+            }
+            else if (_overlappedBubblesCount == maxBubblesThreshold)
+            {
+                UpdateState(EnemyState.Stunned);
             }
         }
     }
