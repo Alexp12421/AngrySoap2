@@ -31,10 +31,11 @@ public class EnemyComponent : MonoBehaviour
     private bool _enemyInAttackRange;
 
     [SerializeField] private List<GameObject> bubbleSockets = new List<GameObject>();
+    [SerializeField] private GameObject stunSocket;
     [SerializeField] private int maxBubblesThreshold = 0;
     private int _overlappedBubblesCount;
     
-    [SerializeField] private int stunDuration = 2;
+    [SerializeField] private float stunDuration = 3.5f;
     private float _remainingStunDuration = 0.0f;
     
     private Rigidbody _rigidbody;
@@ -74,6 +75,12 @@ public class EnemyComponent : MonoBehaviour
             _remainingStunDuration = math.clamp(_remainingStunDuration - Time.fixedDeltaTime, 0, stunDuration);
             if (_remainingStunDuration <= 0.0f)
             {
+                foreach (GameObject bubbleSocket in bubbleSockets)
+                {
+                    bubbleSocket.SetActive(false);
+                }
+
+                _overlappedBubblesCount = 0;
                 UpdateState(EnemyState.Chasing);
             }
         }
@@ -83,6 +90,7 @@ public class EnemyComponent : MonoBehaviour
     {
         animator.speed = 1.0f;
         _currentState = newState;
+        stunSocket.SetActive(false);
         switch (_currentState)
         {
             case EnemyState.Inactive:
@@ -126,6 +134,7 @@ public class EnemyComponent : MonoBehaviour
         {
             bubbleSocket.SetActive(false);
         }
+        stunSocket.SetActive(false);
 
         _overlappedBubblesCount = 0;
         UpdateState(EnemyState.Chasing);
@@ -148,6 +157,7 @@ public class EnemyComponent : MonoBehaviour
         Debug.Log("StunEnemy called!");
         _navMeshAgent.isStopped = true;
         _remainingStunDuration = stunDuration;
+        stunSocket.SetActive(true);
         animator.speed = 0.0f;
     }
 
