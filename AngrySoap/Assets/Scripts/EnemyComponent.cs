@@ -20,17 +20,25 @@ public class EnemyComponent : MonoBehaviour
     private EnemyState _currentState;
     private GameObject _playerGameObject;
     private NavMeshAgent _navMeshAgent;
+    private EnemyHealthComponent _enemyHealthComponent;
     [SerializeField] private Animator animator;
-    
+
     [SerializeField] private LayerMask groundLayer, playerLayer;
     [SerializeField] private float attackRange = 3;
     private bool _enemyInAttackRange;
 
+    [SerializeField] private List<GameObject> bubbleSockets = new List<GameObject>();
+    [SerializeField] private int maxBubblesThreshold = 0;
+    private int _overlappedBubblesCount;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        UpdateState(EnemyState.Inactive);
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _enemyHealthComponent = GetComponent<EnemyHealthComponent>();
+        maxBubblesThreshold = bubbleSockets.Count;
+        UpdateState(EnemyState.Inactive);
     }
 
     // Update is called once per frame
@@ -88,7 +96,14 @@ public class EnemyComponent : MonoBehaviour
     {
         Debug.Log("InitializeEnemy called!");
         gameObject.SetActive(true);
-        
+        _enemyHealthComponent.ResetHealth();
+
+        foreach (GameObject bubbleSocket in bubbleSockets)
+        {
+            bubbleSocket.SetActive(false);
+        }
+
+        _overlappedBubblesCount = 0;
         UpdateState(EnemyState.Chasing);
     }
 
@@ -121,7 +136,7 @@ public class EnemyComponent : MonoBehaviour
     {
         _playerGameObject = player;
     }
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -129,5 +144,26 @@ public class EnemyComponent : MonoBehaviour
         {
             Debug.LogError("Player is attacked");
         }
+        else if (other.gameObject.GetComponent<Bubble>() != null)
+        {
+            if (_overlappedBubblesCount < maxBubblesThreshold)
+            {
+                _overlappedBubblesCount++;
+                foreach (var bubbleSocket in bubbleSockets)
+                {
+                    if (!bubbleSocket.activeSelf)
+                    {
+                        bubbleSocket.SetActive(true);
+
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public bool SkipEnemy()
+    {
+        return maxBubblesThreshold <= _overlappedBubblesCount;
     }
 }
