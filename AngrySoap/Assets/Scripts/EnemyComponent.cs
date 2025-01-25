@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public enum EnemyState
 {
@@ -17,7 +18,8 @@ public enum EnemyState
 public class EnemyComponent : MonoBehaviour
 {
     private static readonly int Attack = Animator.StringToHash("Attack");
-    private EnemyState _currentState;
+    private static readonly int Die = Animator.StringToHash("Die");
+    [SerializeField] private EnemyState _currentState;
     private GameObject _playerGameObject;
     private NavMeshAgent _navMeshAgent;
     private EnemyHealthComponent _enemyHealthComponent;
@@ -86,7 +88,7 @@ public class EnemyComponent : MonoBehaviour
         return _currentState;
     }
 
-    private void DeactivateEnemy()
+    public void DeactivateEnemy()
     {
         Debug.Log("DeactivateEnemy called!");
         gameObject.SetActive(false);
@@ -94,7 +96,6 @@ public class EnemyComponent : MonoBehaviour
 
     private void InitializeEnemy()
     {
-        Debug.Log("InitializeEnemy called!");
         gameObject.SetActive(true);
         _enemyHealthComponent.ResetHealth();
 
@@ -109,12 +110,14 @@ public class EnemyComponent : MonoBehaviour
 
     private void ChasePlayer()
     {
+        _navMeshAgent.isStopped = false;
         _navMeshAgent.SetDestination(_playerGameObject.transform.position);
     }
 
     private void EnemyDie()
     {
-        Debug.Log("EnemyDie called!");
+        animator.SetTrigger(Die);
+        _navMeshAgent.isStopped = true;
     }
 
     private void StunEnemy()
@@ -144,7 +147,7 @@ public class EnemyComponent : MonoBehaviour
         {
             Debug.LogError("Player is attacked");
         }
-        else if (other.gameObject.GetComponent<Bubble>() != null)
+        else if (_currentState == EnemyState.Chasing && other.gameObject.GetComponent<Bubble>() != null)
         {
             if (_overlappedBubblesCount < maxBubblesThreshold)
             {
@@ -164,6 +167,28 @@ public class EnemyComponent : MonoBehaviour
 
     public bool SkipEnemy()
     {
-        return maxBubblesThreshold <= _overlappedBubblesCount;
+        return maxBubblesThreshold <= _overlappedBubblesCount || _currentState != EnemyState.Chasing ;
+    }
+
+    public void DetonateBubbles()
+    {
+        if (_currentState is EnemyState.Chasing or EnemyState.Stunned)
+        {
+            foreach (var bubbleSocket in bubbleSockets)
+            {
+                // float bubbleDamage = Random.Range(35, 45);
+                float bubbleDamage = 40.0f;
+                if (bubbleSocket.activeSelf)
+                {
+                    _enemyHealthComponent.OnTakeDamage(bubbleDamage);
+                    _overlappedBubblesCount--;
+                    bubbleSocket.SetActive(false);
+                }
+            }
+            if (_enemyHealthComponent.GetCurrentHealth() <= 0.0f)
+            {
+                UpdateState(EnemyState.Dying);
+            }
+        }
     }
 }

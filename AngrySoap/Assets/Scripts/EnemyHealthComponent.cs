@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class EnemyHealthComponent : MonoBehaviour
 {
+    [SerializeField] private GameObject healthBar; 
+    private Slider _healthBarSlider;
     [SerializeField] private float maxHealth = 120.0f;
     private float _currentHealth;
 
-    [SerializeField] private ProgressBar healthBar;
-
     void Start()
     {
+        _healthBarSlider = healthBar.GetComponent<Slider>();
     }
 
     // Update is called once per frame
@@ -22,11 +24,22 @@ public class EnemyHealthComponent : MonoBehaviour
     public void OnTakeDamage(float damage)
     {
         _currentHealth -= damage;
-        healthBar.value = _currentHealth / maxHealth;
+        math.clamp(_currentHealth, 0, maxHealth);
+        _healthBarSlider.value = _currentHealth / maxHealth;
     }
 
     public void ResetHealth()
     {
         _currentHealth = maxHealth;
+        if (_healthBarSlider == null)
+        {
+            _healthBarSlider = healthBar.GetComponent<Slider>();
+        }
+        _healthBarSlider.value = 1.0f;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return _currentHealth;
     }
 }

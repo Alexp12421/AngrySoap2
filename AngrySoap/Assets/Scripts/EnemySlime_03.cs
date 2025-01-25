@@ -7,6 +7,8 @@ public class EnemySlime_03 : MonoBehaviour
     // Start is called before the first frame update
     
     [SerializeField] private BoxCollider attackBoxCollider;
+    
+    [SerializeField] EnemyComponent _enemyComponent;
     void Start()
     {
         
@@ -26,5 +28,11 @@ public class EnemySlime_03 : MonoBehaviour
     public void DisableAttack()
     {
         attackBoxCollider.enabled = false;
+    }
+    
+    
+    public void DeactivateEnemy()
+    {
+        _enemyComponent.UpdateState(EnemyState.Inactive);
     }
 }

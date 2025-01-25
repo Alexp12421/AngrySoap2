@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyPoolManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private int numberOfEnemies = 10;
@@ -41,6 +41,10 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DetonateBubbles();
+        }
     }
 
     void FixedUpdate()
@@ -81,5 +85,13 @@ public class NewBehaviourScript : MonoBehaviour
         enemyComponent.gameObject.transform.SetPositionAndRotation(new Vector3(randomX, 0, randomZ),
             Quaternion.identity);
         enemyComponent.UpdateState(EnemyState.Initialize);
+    }
+
+    public void DetonateBubbles()
+    {
+        foreach (var enemyComponent in enemyComponents)
+        {
+            enemyComponent.DetonateBubbles();
+        }
     }
 }

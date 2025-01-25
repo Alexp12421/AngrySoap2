@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform VisualTransform;
 
+    [SerializeField]
+    private Vector3 move;
+
     public void OnLook(InputAction.CallbackContext context)
     {
         mouselook = context.ReadValue<Vector2>();
@@ -30,7 +33,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        PlayerVisual = GameObject.Find("VisualSoap");
         VisualTransform = PlayerVisual.transform;
     }
 
@@ -54,19 +56,19 @@ public class PlayerController : MonoBehaviour
         {
             VisualTransform.rotation = Quaternion.Slerp(VisualTransform.rotation, rotation, 0.15F);
         }
-
-        bool isDashing = gameObject.GetComponent<PlayerDash>().GetIsDashing();
-        if (!isDashing)
-        {
-            Vector3 move = new(moveInput.x, 0, moveInput.y);
-            
-            if (move.magnitude > 1)
-            {
-                move.Normalize();
-            }
-
-            transform.Translate(speed * Time.deltaTime * move, Space.World);
         
+        move = new(moveInput.x, 0, moveInput.y);
+        
+        if (move.magnitude > 1)
+        {
+            move.Normalize();
         }
+
+        transform.Translate(speed * Time.deltaTime * move, Space.World);
+    }
+
+    public Vector3 GetMove()
+    {
+        return move;
     }
 }
