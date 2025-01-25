@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyPoolManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private int numberOfEnemies = 10;
