@@ -657,6 +657,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1908613896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7239411146643211334, guid: cc8f1f33f38768547bbdd6583898ab13,
+    type: 3}
+  m_PrefabInstance: {fileID: 4579992671455254757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1908613900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908613896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd2fc5f4438aba428338b9b73050b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1908613901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908613896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959970e27fde1c048a18f605a68c5b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4579992671455254757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -800,6 +830,21 @@ PrefabInstance:
       propertyPath: _DisplacementCurve.m_Curve.Array.data[3].tangentMode
       value: 136
       objectReference: {fileID: 0}
+    - target: {fileID: 4175900649442140043, guid: cc8f1f33f38768547bbdd6583898ab13,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175900649442140043, guid: cc8f1f33f38768547bbdd6583898ab13,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175900649442140043, guid: cc8f1f33f38768547bbdd6583898ab13,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5367047914525201620, guid: cc8f1f33f38768547bbdd6583898ab13,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
@@ -888,7 +933,7 @@ PrefabInstance:
     - target: {fileID: 7239411146643211334, guid: cc8f1f33f38768547bbdd6583898ab13,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -898,6 +943,14 @@ PrefabInstance:
         type: 3}
       insertIndex: 8
       addedObject: {fileID: 1060549896}
+    - targetCorrespondingSourceObject: {fileID: 7239411146643211334, guid: cc8f1f33f38768547bbdd6583898ab13,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1908613901}
+    - targetCorrespondingSourceObject: {fileID: 7239411146643211334, guid: cc8f1f33f38768547bbdd6583898ab13,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1908613900}
   m_SourcePrefab: {fileID: 100100000, guid: cc8f1f33f38768547bbdd6583898ab13, type: 3}
 --- !u!1001 &6955694920691329594
 PrefabInstance:

@@ -49,7 +49,8 @@ public class PlayerSoapArmour : MonoBehaviour
     private void Start() {
         playerWater = GetComponent<PlayerWater>();
         _renderer = BubbleArmour.GetComponent<Renderer>();
-        _renderer.material.SetFloat("_Disolve", 0);
+        _renderer.material.SetFloat("_Disolve", 1);
+        _renderer.material.SetFloat("_DistortionStrength", 0.3f);
     }
 
     public void OnToggleArmour(InputAction.CallbackContext context)
@@ -105,7 +106,7 @@ public class PlayerSoapArmour : MonoBehaviour
         {
             StopCoroutine(_disolveCoroutine);
             _disolveCoroutine = null;
-            _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(0));
+            _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(1));
         }
     }
 
@@ -115,7 +116,7 @@ public class PlayerSoapArmour : MonoBehaviour
         {
             if(!BubbleArmour.activeSelf)
                 BubbleArmour.SetActive(true);
-            _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(1));
+            _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(0));
             gameObject.GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
             bubbleTrailCoroutine = StartCoroutine(SpawnBubbleTrail());
             StartCoroutine(ConsumeWaterWhileActive()); 

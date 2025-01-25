@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3859175350726786171}
   - component: {fileID: 5606627194848136175}
   - component: {fileID: 4971466001348567667}
+  - component: {fileID: 9078758683245799056}
   - component: {fileID: 3503634317670577686}
   - component: {fileID: 2708940507656896049}
   - component: {fileID: 2976505824020016381}
@@ -152,7 +153,19 @@ MonoBehaviour:
     m_ActionId: 4a22b810-fb85-4d26-be5a-89561a8b8eef
     m_ActionName: Player/Dash[/Keyboard/shift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9078758683245799056}
+        m_TargetAssemblyTypeName: PlayerDetonateBubbles, Assembly-CSharp
+        m_MethodName: OnDetonate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c5b3f3af-003b-4e73-8895-90a3c5b4fe93
     m_ActionName: Player/Detonate[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
@@ -218,6 +231,51 @@ MonoBehaviour:
   trailBubbleInterval: 0.25
   canToggleArmour: 1
   isArmourActive: 0
+  _DisplacementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0021275315
+      value: -0.0006716545
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.3000027
+      value: -0.49877906
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.70209354
+      value: 0.039956287
+      inSlope: 0.08609251
+      outSlope: 0.08609251
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.6211474
+    - serializedVersion: 3
+      time: 1.0036322
+      value: 0.0039156503
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _DisplacementMagnitude: 0.4
+  _LerpSpeed: 2
+  _DisolveSpeed: 1
 --- !u!114 &3859175350726786171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +323,22 @@ MonoBehaviour:
   waterCost: 5
   PlayerVisual: {fileID: 8525141428414989734}
   VisualTransform: {fileID: 0}
+--- !u!114 &9078758683245799056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994389963096404517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17525acd21be25a458c4f290809900c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detonateCoolDown: 1
+  canDetonate: 1
+  waterCost: 5
+  enemyPoolManager: {fileID: 0}
 --- !u!136 &3503634317670577686
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -550,17 +624,17 @@ PrefabInstance:
     - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
         type: 3}
@@ -620,12 +694,20 @@ PrefabInstance:
     - target: {fileID: 5104116644707398841, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5104116644707398841, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9087449910259273873}
+    - targetCorrespondingSourceObject: {fileID: 5104116644707398841, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5408123853823120234}
   m_SourcePrefab: {fileID: 100100000, guid: 7c6f836a6626e704e9e1e7bb6a3b990a, type: 3}
 --- !u!4 &4175900649442140043 stripped
 Transform:
@@ -639,6 +721,30 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2495831056555274495}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9087449910259273873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239411146643211334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959970e27fde1c048a18f605a68c5b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5408123853823120234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239411146643211334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd2fc5f4438aba428338b9b73050b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8753708634723884982
 PrefabInstance:
   m_ObjectHideFlags: 0
