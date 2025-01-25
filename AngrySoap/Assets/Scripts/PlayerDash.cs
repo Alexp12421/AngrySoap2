@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerDash : MonoBehaviour
 {
     [SerializeField]
-    private float dashSpeed = 50.0f;
+    private float dashSpeed = 15.0f;
 
     [SerializeField]
     private float dashDuration = 0.5f;
@@ -18,7 +18,7 @@ public class PlayerDash : MonoBehaviour
     private bool canDash = true;
 
     [SerializeField]
-    private bool isDashing = false;
+    private int waterCost = 5;
 
     private Rigidbody rb;
 
@@ -38,18 +38,23 @@ public class PlayerDash : MonoBehaviour
     {
         if (context.started)
         {
-            if (canDash)
+            if (canDash && gameObject.GetComponent<PlayerWater>().ConsumeWater(waterCost))
             {
                 canDash = false;
-                isDashing = true;
                 StartCoroutine(Dash());
             }
+
         }
     }
 
     private IEnumerator Dash()
     {
-        Vector3 DashForce = VisualTransform.forward * dashSpeed;
+        Vector3 moveDirection = gameObject.GetComponent<PlayerController>().GetMove();
+        if  (moveDirection == Vector3.zero)
+        {
+            moveDirection = VisualTransform.forward;
+        }
+        Vector3 DashForce = moveDirection * dashSpeed;
         rb.AddForce(DashForce, ForceMode.Impulse);
         Invoke(nameof(StopDash), dashDuration);
         yield return new WaitForSeconds(dashCoolDown);
@@ -59,11 +64,5 @@ public class PlayerDash : MonoBehaviour
     private void StopDash()
     {
         rb.velocity = Vector3.zero;
-        isDashing = false;
-    }
-
-    public bool GetIsDashing()
-    {
-        return isDashing;
     }
 }
