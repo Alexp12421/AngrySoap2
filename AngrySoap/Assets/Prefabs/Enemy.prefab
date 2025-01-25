@@ -829,7 +829,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbefc1613b75d141872d84fcf7e9645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
 --- !u!1 &4018964878216578935 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1911877360113066483, guid: 0c42d46849369df4f962d3f9f1506efc,
@@ -992,6 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackBoxCollider: {fileID: 8379653574384332234}
+  _enemyComponent: {fileID: 5531793302072392557}
 --- !u!95 &5172817335955010628
 Animator:
   serializedVersion: 5

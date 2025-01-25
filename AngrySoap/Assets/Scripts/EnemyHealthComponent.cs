@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,6 @@ public class EnemyHealthComponent : MonoBehaviour
     private Slider _healthBarSlider;
     [SerializeField] private float maxHealth = 120.0f;
     private float _currentHealth;
-
 
     void Start()
     {
@@ -24,6 +24,7 @@ public class EnemyHealthComponent : MonoBehaviour
     public void OnTakeDamage(float damage)
     {
         _currentHealth -= damage;
+        math.clamp(_currentHealth, 0, maxHealth);
         _healthBarSlider.value = _currentHealth / maxHealth;
     }
 
@@ -36,9 +37,9 @@ public class EnemyHealthComponent : MonoBehaviour
         }
         _healthBarSlider.value = 1.0f;
     }
-    
-    private void SetupCanvas(Canvas canvas, Camera camera)
+
+    public float GetCurrentHealth()
     {
-       
+        return _currentHealth;
     }
 }
