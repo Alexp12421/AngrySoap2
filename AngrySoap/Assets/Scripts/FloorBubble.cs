@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorBubble : MonoBehaviour
+public class FloorBubble : Bubble
 {
     [SerializeField]
     private float bubbleDuration = 5.0f;

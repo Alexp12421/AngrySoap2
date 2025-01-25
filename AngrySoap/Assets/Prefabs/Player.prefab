@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1722938582533268011}
   - component: {fileID: 3859175350726786171}
   - component: {fileID: 5606627194848136175}
-  - component: {fileID: 4850651916267733525}
+  - component: {fileID: 4971466001348567667}
   - component: {fileID: 3503634317670577686}
   - component: {fileID: 2708940507656896049}
   m_Layer: 11
@@ -135,7 +135,7 @@ MonoBehaviour:
     m_ActionName: Player/SoapArmour[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4850651916267733525}
+      - m_Target: {fileID: 4971466001348567667}
         m_TargetAssemblyTypeName: PlayerDash, Assembly-CSharp
         m_MethodName: OnDash
         m_Mode: 0
@@ -207,6 +207,8 @@ MonoBehaviour:
   playerWater: {fileID: 0}
   CoolDown: 1
   ArmourCost: 1
+  ConsumeWaterInterval: 0.5
+  trailBubbleInterval: 0.25
   canToggleArmour: 1
   isArmourActive: 0
 --- !u!114 &3859175350726786171
@@ -237,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   isAlive: 1
---- !u!114 &4850651916267733525
+--- !u!114 &4971466001348567667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,7 +257,6 @@ MonoBehaviour:
   canDash: 1
   isDashing: 0
   PlayerVisual: {fileID: 8525141428414989734}
-  VisualTransform: {fileID: 0}
 --- !u!136 &3503634317670577686
 CapsuleCollider:
   m_ObjectHideFlags: 0

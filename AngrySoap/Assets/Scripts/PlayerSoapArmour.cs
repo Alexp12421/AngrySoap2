@@ -23,6 +23,12 @@ public class PlayerSoapArmour : MonoBehaviour
     private int ArmourCost = 1;
 
     [SerializeField]
+    private float ConsumeWaterInterval = 0.5f;
+
+    [SerializeField]
+    private float trailBubbleInterval = 0.25f;
+
+    [SerializeField]
     private bool canToggleArmour = true;
 
     [SerializeField]
@@ -93,8 +99,8 @@ public class PlayerSoapArmour : MonoBehaviour
         {
             BubbleArmour.SetActive(true);
             gameObject.GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
-            StartCoroutine(ConsumeWaterWhileActive());
             bubbleTrailCoroutine = StartCoroutine(SpawnBubbleTrail());
+            StartCoroutine(ConsumeWaterWhileActive()); 
         }
     }
 
@@ -102,7 +108,7 @@ public class PlayerSoapArmour : MonoBehaviour
     {
         while (isArmourActive && playerWater.ConsumeWater(ArmourCost))
         {
-            yield return new WaitForSeconds(0.5f); // Adjust the interval as needed
+            yield return new WaitForSeconds(ConsumeWaterInterval); // Adjust the interval as needed
         }
         DisableArmour();
     }
@@ -112,7 +118,7 @@ public class PlayerSoapArmour : MonoBehaviour
         while (isArmourActive)
         {
             AddTrail();
-            yield return new WaitForSeconds(0.1f); // Adjust the interval as needed
+            yield return new WaitForSeconds(trailBubbleInterval); // Adjust the interval as needed
         }
     }
 
