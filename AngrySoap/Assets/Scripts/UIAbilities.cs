@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIAbilities : MonoBehaviour
 {
+    [Header("Canvas GameObject")]
+    public GameObject Canvas;
+
     [Header("Bubble Shot Ability")]
     public Image BubbleShotImage;
     public Text BubbleShotText;
@@ -48,14 +51,31 @@ public class UIAbilities : MonoBehaviour
    
     void Start()
     {
+        Canvas = GameObject.Find("Canvas");
+
+        BubbleShotImage = Canvas.transform.Find("BubbleShot").transform.Find("Icon (GREYED)").GetComponent<Image>();
         BubbleShotImage.fillAmount = 0;
+
+        BubbleArmorImage = Canvas.transform.Find("BubbleArmor").transform.Find("Icon (GREYED)").GetComponent<Image>();
         BubbleArmorImage.fillAmount = 0;
+
+        BubbleDetonateImage = Canvas.transform.Find("BubbleDetonate").transform.Find("Icon (GREYED)").GetComponent<Image>();
         BubbleDetonateImage.fillAmount = 0;
+        
+        DoucheDashImage = Canvas.transform.Find("DoucheDash").transform.Find("Icon (GREYED)").GetComponent<Image>();
         DoucheDashImage.fillAmount = 0;
 
+
+        BubbleShotText = Canvas.transform.Find("BubbleShot").transform.Find("Text").GetComponent<Text>();
         BubbleShotText.text = "";
+
+        BubbleArmorText = Canvas.transform.Find("BubbleArmor").transform.Find("Text").GetComponent<Text>();
         BubbleArmorText.text = "";
+
+        BubbleDetonateText = Canvas.transform.Find("BubbleDetonate").transform.Find("Text").GetComponent<Text>();
         BubbleDetonateText.text = "";
+
+        DoucheDashText = Canvas.transform.Find("DoucheDash").transform.Find("Text").GetComponent<Text>();
         DoucheDashText.text = "";
         
     }
@@ -77,7 +97,7 @@ public class UIAbilities : MonoBehaviour
 
     private void BubbleShotInput()
     {
-        if( Input.GetMouseButtonDown(0) && !isBubbleShotCooldown )
+        if( Input.GetMouseButton(0) && !isBubbleShotCooldown )
         {
             isBubbleShotCooldown = true;
             currentBubbleShotCooldown = BubbleShotCooldown;

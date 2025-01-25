@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3083b6a53c892ff48845c2a4f7a5316c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 0}
   BubbleShotImage: {fileID: 0}
   BubbleShotText: {fileID: 0}
   BubbleShotCooldown: 0.5

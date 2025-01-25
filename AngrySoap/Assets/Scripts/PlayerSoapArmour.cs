@@ -33,13 +33,23 @@ public class PlayerSoapArmour : MonoBehaviour
 
     [SerializeField]
     private bool isArmourActive = false;
+
+    Renderer _renderer;
+    [SerializeField] AnimationCurve _DisplacementCurve;
+    [SerializeField] float _DisplacementMagnitude;
+    [SerializeField] float _LerpSpeed;
+    [SerializeField] float _DisolveSpeed;
     
     private Vector3 armourTrailStart;
 
     private Coroutine bubbleTrailCoroutine;
 
+    private Coroutine _disolveCoroutine;
+
     private void Start() {
         playerWater = GetComponent<PlayerWater>();
+        _renderer = BubbleArmour.GetComponent<Renderer>();
+        _renderer.material.SetFloat("_Disolve", 0);
     }
 
     public void OnToggleArmour(InputAction.CallbackContext context)
@@ -83,7 +93,7 @@ public class PlayerSoapArmour : MonoBehaviour
 
     public void DisableArmour()
     {
-        BubbleArmour.SetActive(false);
+        // BubbleArmour.SetActive(false);
         gameObject.GetComponent<CapsuleCollider>().excludeLayers = 0;
         isArmourActive = false;
         if (bubbleTrailCoroutine != null)
@@ -91,13 +101,21 @@ public class PlayerSoapArmour : MonoBehaviour
             StopCoroutine(bubbleTrailCoroutine);
             bubbleTrailCoroutine = null;
         }
+        if (_disolveCoroutine != null)
+        {
+            StopCoroutine(_disolveCoroutine);
+            _disolveCoroutine = null;
+            _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(0));
+        }
     }
 
     public void EnableArmour()
     {
         if (playerWater.ConsumeWater(ArmourCost))
         {
-            BubbleArmour.SetActive(true);
+            if(!BubbleArmour.activeSelf)
+                BubbleArmour.SetActive(true);
+            _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(1));
             gameObject.GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
             bubbleTrailCoroutine = StartCoroutine(SpawnBubbleTrail());
             StartCoroutine(ConsumeWaterWhileActive()); 
@@ -144,6 +162,18 @@ public class PlayerSoapArmour : MonoBehaviour
             float randomScale = Random.Range(0.4f, 0.6f);
             bubble.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
             armourTrailStart = currentPosition;
+        }
+    }
+
+    IEnumerator Coroutine_DisolveShield(float target) 
+    {
+        float start = _renderer.material.GetFloat("_Disolve");
+        float lerp = 0;
+        while (lerp < 1)
+        {
+            _renderer.material.SetFloat("_Disolve", Mathf.Lerp(start, target, lerp));
+            lerp += Time.deltaTime * _DisolveSpeed;
+            yield return null;
         }
     }
 
