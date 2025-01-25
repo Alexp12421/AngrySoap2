@@ -55,13 +55,18 @@ public class PlayerController : MonoBehaviour
             VisualTransform.rotation = Quaternion.Slerp(VisualTransform.rotation, rotation, 0.15F);
         }
 
-        Vector3 move = new(moveInput.x, 0, moveInput.y);
-        
-        if (move.magnitude > 1)
+        bool isDashing = gameObject.GetComponent<PlayerDash>().GetIsDashing();
+        if (!isDashing)
         {
-            move.Normalize();
-        }
+            Vector3 move = new(moveInput.x, 0, moveInput.y);
+            
+            if (move.magnitude > 1)
+            {
+                move.Normalize();
+            }
 
-        transform.Translate(speed * Time.deltaTime * move, Space.World);
+            transform.Translate(speed * Time.deltaTime * move, Space.World);
+        
+        }
     }
 }
