@@ -33,6 +33,6 @@ public class EnemySlime_03 : MonoBehaviour
     
     public void DeactivateEnemy()
     {
-        _enemyComponent.DeactivateEnemy();
+        _enemyComponent.UpdateState(EnemyState.Inactive);
     }
 }

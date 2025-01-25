@@ -19,7 +19,7 @@ public class EnemyComponent : MonoBehaviour
 {
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Die = Animator.StringToHash("Die");
-    private EnemyState _currentState;
+    [SerializeField] private EnemyState _currentState;
     private GameObject _playerGameObject;
     private NavMeshAgent _navMeshAgent;
     private EnemyHealthComponent _enemyHealthComponent;
@@ -181,10 +181,11 @@ public class EnemyComponent : MonoBehaviour
                 if (bubbleSocket.activeSelf)
                 {
                     _enemyHealthComponent.OnTakeDamage(bubbleDamage);
+                    _overlappedBubblesCount--;
                     bubbleSocket.SetActive(false);
                 }
             }
-            if (_enemyHealthComponent.GetCurrentHealth() == 0.0f)
+            if (_enemyHealthComponent.GetCurrentHealth() <= 0.0f)
             {
                 UpdateState(EnemyState.Dying);
             }
