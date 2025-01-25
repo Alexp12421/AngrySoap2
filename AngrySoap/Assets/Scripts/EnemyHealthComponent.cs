@@ -26,6 +26,10 @@ public class EnemyHealthComponent : MonoBehaviour
         _currentHealth -= damage;
         math.clamp(_currentHealth, 0, maxHealth);
         _healthBarSlider.value = _currentHealth / maxHealth;
+        if (_currentHealth <= 0)
+        {
+            _healthBarSlider.transform.gameObject.SetActive(false);
+        }
     }
 
     public void ResetHealth()
@@ -35,11 +39,17 @@ public class EnemyHealthComponent : MonoBehaviour
         {
             _healthBarSlider = healthBar.GetComponent<Slider>();
         }
+        _healthBarSlider.transform.gameObject.SetActive(true);
         _healthBarSlider.value = 1.0f;
     }
 
     public float GetCurrentHealth()
     {
         return _currentHealth;
+    }
+
+    public float GetHealthPercentage()
+    {
+        return _healthBarSlider.value;
     }
 }

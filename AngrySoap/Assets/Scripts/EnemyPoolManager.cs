@@ -19,6 +19,9 @@ public class EnemyPoolManager : MonoBehaviour
     [SerializeField] private float _curentSpawnDelay = 5.0f;
     private float _remainingSpawnDelay;
     private GameObject _playerObject;
+    private bool _gameWon = false;
+
+    [SerializeField] private List<TrashComponent> trashComponents = new List<TrashComponent>();
 
     void Start()
     {
@@ -28,8 +31,20 @@ public class EnemyPoolManager : MonoBehaviour
                 .GetComponent<EnemyComponent>());
         }
 
+        List<GameObject> trashObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Trash"));
+
+        foreach (GameObject trashObject in trashObjects)
+        {
+            TrashComponent trashComponent = trashObject.GetComponent<TrashComponent>();
+            if (trashComponent != null)
+            {
+                trashComponents.Add(trashComponent);
+                trashComponent.LinkEnemyPoolManager(this);
+            }
+        }
+
         _remainingSpawnDelay = _curentSpawnDelay;
-        
+
         _playerObject = GameObject.Find("Player");
 
         foreach (var enemyComponent in enemyComponents)
@@ -49,27 +64,30 @@ public class EnemyPoolManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        _remainingSpawnDelay -= Time.fixedDeltaTime;
-        if (_remainingSpawnDelay <= 0)
+        if (!_gameWon)
         {
-            _remainingSpawnDelay = Random.Range(MinSpawnDelay, MaxSpawnDelay);
-            int enemiesSpawned = 0;
-            foreach (var enemyComponent in enemyComponents)
+            _remainingSpawnDelay -= Time.fixedDeltaTime;
+            if (_remainingSpawnDelay <= 0)
             {
-                if (enemyComponent.GetCurrentState() != EnemyState.Inactive)
-                {
-                    enemiesSpawned++;
-                }
-            }
-
-            if (enemiesSpawned < numberOfEnemiesToHaveSpawned)
-            {
+                _remainingSpawnDelay = Random.Range(MinSpawnDelay, MaxSpawnDelay);
+                int enemiesSpawned = 0;
                 foreach (var enemyComponent in enemyComponents)
                 {
-                    if (enemyComponent.GetCurrentState() == EnemyState.Inactive)
+                    if (enemyComponent.GetCurrentState() != EnemyState.Inactive)
                     {
-                        SpawnAtRandomLocation(enemyComponent);
-                        break;
+                        enemiesSpawned++;
+                    }
+                }
+
+                if (enemiesSpawned < numberOfEnemiesToHaveSpawned)
+                {
+                    foreach (var enemyComponent in enemyComponents)
+                    {
+                        if (enemyComponent.GetCurrentState() == EnemyState.Inactive)
+                        {
+                            SpawnAtRandomLocation(enemyComponent);
+                            break;
+                        }
                     }
                 }
             }
@@ -92,6 +110,52 @@ public class EnemyPoolManager : MonoBehaviour
         foreach (var enemyComponent in enemyComponents)
         {
             enemyComponent.DetonateBubbles();
+        }
+    }
+
+    public void TrashDestroyed(TrashComponent trashComponent)
+    {
+        trashComponent.gameObject.SetActive(false);
+        int remainingTrash = 0;
+        foreach (var trashComp in trashComponents)
+        {
+            if (trashComp.gameObject.activeSelf)
+            {
+                remainingTrash++;
+            }
+        }
+
+        if (remainingTrash <= 0)
+        {
+            Debug.LogWarning("Game Won");
+            _gameWon = true;
+            foreach (var enemyComponent in enemyComponents)
+            {
+                if (enemyComponent.GetCurrentState() != EnemyState.Inactive)
+                {
+                    enemyComponent.UpdateState(EnemyState.Dying);
+                }
+            }
+        }
+    }
+
+    public void IncreaseEnemyCount(int increaseAmount)
+    {
+        numberOfEnemiesToHaveSpawned += increaseAmount;
+        while (increaseAmount > 0)
+        {
+            for (int i = enemyComponents.Count - 1; i >= 0; i--)
+            {
+                if (enemyComponents[i].GetCurrentState() == EnemyState.Inactive)
+                {
+                    enemyComponents[i].UpdateState(EnemyState.Initialize);
+                    increaseAmount--;
+                    if (increaseAmount == 0)
+                    {
+                        break;
+                    }
+                }
+            }
         }
     }
 }
