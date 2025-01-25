@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterPickUp : MonoBehaviour
+[CreateAssetMenu(menuName = "PickUp/WaterPickUp")]
+public class WaterPickUp : PickUpEffect
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private int waterAmount = 10;
 
-    // Update is called once per frame
-    void Update()
+    public override void ApplyPickUp(GameObject player)
     {
-        
+        player.GetComponent<PlayerWater>().AddWater(waterAmount);
     }
 }

@@ -12,13 +12,15 @@ GameObject:
   - component: {fileID: 5367047914525201620}
   - component: {fileID: 1492710471168864043}
   - component: {fileID: 6649236553743178242}
+  - component: {fileID: 1722938582533268011}
   - component: {fileID: 3859175350726786171}
   - component: {fileID: 5606627194848136175}
+  - component: {fileID: 4850651916267733525}
   - component: {fileID: 3503634317670577686}
   - component: {fileID: 2708940507656896049}
   m_Layer: 11
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,6 +40,7 @@ Transform:
   m_Children:
   - {fileID: 9008521256916754204}
   - {fileID: 6203858442799255851}
+  - {fileID: 4175900649442140043}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5367047914525201620
@@ -114,6 +117,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7ccb237f-e991-4e2d-b098-5858cc88ad58
     m_ActionName: Player/Shoot[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1722938582533268011}
+        m_TargetAssemblyTypeName: PlayerSoapArmour, Assembly-CSharp
+        m_MethodName: OnToggleArmour
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e40f5007-ab46-45c9-b4bd-7f311d17e733
+    m_ActionName: Player/SoapArmour[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4850651916267733525}
+        m_TargetAssemblyTypeName: PlayerDash, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4a22b810-fb85-4d26-be5a-89561a8b8eef
+    m_ActionName: Player/Dash[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -154,6 +189,26 @@ MonoBehaviour:
   attackSpeed: 1
   canShoot: 1
   isShooting: 0
+--- !u!114 &1722938582533268011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994389963096404517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476cf92932cc35144b1878c0fd71a121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BubbleArmour: {fileID: 7239411146643211334}
+  BubbleTrail: {fileID: 5104116644707398841, guid: fb708d542de30bf4981e4fba7b231e80,
+    type: 3}
+  playerWater: {fileID: 0}
+  CoolDown: 1
+  ArmourCost: 1
+  canToggleArmour: 1
+  isArmourActive: 0
 --- !u!114 &3859175350726786171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d480028670139c14fae3ac81b0fa9d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  water: 10
+  water: 100
   hasWater: 1
 --- !u!114 &5606627194848136175
 MonoBehaviour:
@@ -180,8 +235,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bee7554f7990949b4addbbf3d8f019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   isAlive: 1
+--- !u!114 &4850651916267733525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994389963096404517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8495ce6ca66f80e48b7e869738dbf3bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 15
+  dashDuration: 0.5
+  dashCoolDown: 1
+  canDash: 1
+  isDashing: 0
+  PlayerVisual: {fileID: 8525141428414989734}
+  VisualTransform: {fileID: 0}
 --- !u!136 &3503634317670577686
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -400,6 +474,91 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1001 &2495831056555274495
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7124815598145502720}
+    m_Modifications:
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104116644707398841, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_Name
+      value: BubbleArmour
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104116644707398841, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c6f836a6626e704e9e1e7bb6a3b990a, type: 3}
+--- !u!4 &4175900649442140043 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1968423348955197300, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2495831056555274495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7239411146643211334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5104116644707398841, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2495831056555274495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8831008185220954359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -530,6 +689,12 @@ PrefabInstance:
 --- !u!4 &7703405470177121731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8040625926853350092, guid: 6adff15acb306804c8ef05899e530b34,
+    type: 3}
+  m_PrefabInstance: {fileID: 8831008185220954359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8525141428414989734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adff15acb306804c8ef05899e530b34,
     type: 3}
   m_PrefabInstance: {fileID: 8831008185220954359}
   m_PrefabAsset: {fileID: 0}
