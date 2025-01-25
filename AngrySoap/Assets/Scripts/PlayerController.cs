@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        PlayerVisual = GameObject.Find("VisualSoap");
         VisualTransform = PlayerVisual.transform;
     }
 
