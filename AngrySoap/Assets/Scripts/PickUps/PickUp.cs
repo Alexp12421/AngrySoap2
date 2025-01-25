@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PickUpEffect pickUpEffect;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerEnter(Collider other) {
+        print("Triggered");
+        if(other.CompareTag("Player"))
+        {
+            pickUpEffect.ApplyPickUp(other.gameObject);
+            gameObject.SetActive(false);
+        }
     }
 }
