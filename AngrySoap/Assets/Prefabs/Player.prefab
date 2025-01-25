@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4971466001348567667}
   - component: {fileID: 3503634317670577686}
   - component: {fileID: 2708940507656896049}
+  - component: {fileID: 2976505824020016381}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -314,6 +315,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &2976505824020016381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994389963096404517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3083b6a53c892ff48845c2a4f7a5316c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BubbleShotImage: {fileID: 0}
+  BubbleShotText: {fileID: 0}
+  BubbleShotCooldown: 0.5
+  BubbleArmorImage: {fileID: 0}
+  BubbleArmorText: {fileID: 0}
+  BubbleArmorCooldown: 1
+  BubbleDetonateImage: {fileID: 0}
+  BubbleDetonateText: {fileID: 0}
+  BubbleDetonateCooldown: 5
+  DoucheDashImage: {fileID: 0}
+  DoucheDashText: {fileID: 0}
+  DoucheDashCooldown: 7
 --- !u!1 &4228623822638630237
 GameObject:
   m_ObjectHideFlags: 0
