@@ -141,7 +141,7 @@ public class PlayerSoapArmour : MonoBehaviour
 
             GameObject bubble = Instantiate(BubbleTrail, spawnPosition, Quaternion.identity);
             bubble.AddComponent<FloorBubble>();
-            float randomScale = Random.Range(0.2f, 0.4f);
+            float randomScale = Random.Range(0.4f, 0.6f);
             bubble.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
             armourTrailStart = currentPosition;
         }
