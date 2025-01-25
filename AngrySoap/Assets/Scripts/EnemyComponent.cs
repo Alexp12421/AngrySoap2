@@ -125,7 +125,6 @@ public class EnemyComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.LogError(other.gameObject.name);
         if (other.gameObject == _playerGameObject)
         {
             Debug.LogError("Player is attacked");
