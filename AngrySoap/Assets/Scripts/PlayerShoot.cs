@@ -71,7 +71,7 @@ public class PlayerShoot : MonoBehaviour
     {
         while (isShooting) // Continue while the button is held down
         {
-            if (canShoot && playerWater.HasWater() && playerWater.ConsumeWater(waterCost)) // Check if we can shoot
+            if (canShoot && playerWater.ConsumeWater(waterCost)) // Check if we can shoot
             {
                 Shoot();
                 StartCoroutine(ShootCooldown()); // Start the cooldown
