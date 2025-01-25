@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6200149547761135565}
-  - component: {fileID: 2918403233148634360}
+  - component: {fileID: 6996116193144742735}
   m_Layer: 0
   m_Name: EnemyPoolManager
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_GameObject: {fileID: 7356448861476142391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0942855, y: -5.3878436, z: -12.83872}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2918403233148634360
+--- !u!114 &6996116193144742735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d9686a082f2a645a919f58a8476a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfEnemies: 5
-  EnemyType: {fileID: 7356448861476142391, guid: a07cb8eea792f8046837dd5cb464ac63,
+  numberOfEnemies: 10
+  numberOfEnemiesToHaveSpawned: 6
+  enemyType: {fileID: 7356448861476142391, guid: a07cb8eea792f8046837dd5cb464ac63,
     type: 3}
+  enemyComponents: []
+  maxSpawnRangeDistance: 10
+  MinSpawnDelay: 2.5
+  MaxSpawnDelay: 4
+  _curentSpawnDelay: 5
