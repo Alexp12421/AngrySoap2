@@ -39,6 +39,9 @@ public class EnemyComponent : MonoBehaviour
     private float _remainingStunDuration = 0.0f;
     
     private Rigidbody _rigidbody;
+    [SerializeField] private GameObject enemyMesh;
+
+    private Renderer _renderer;
 
 
     // Start is called before the first frame update
@@ -48,6 +51,7 @@ public class EnemyComponent : MonoBehaviour
         _enemyHealthComponent = GetComponent<EnemyHealthComponent>();
         maxBubblesThreshold = bubbleSockets.Count;
         _rigidbody = GetComponent<Rigidbody>();
+        _renderer = enemyMesh.GetComponent<Renderer>();
         UpdateState(EnemyState.Inactive);
     }
 
@@ -126,10 +130,21 @@ public class EnemyComponent : MonoBehaviour
 
     private void InitializeEnemy()
     {
+        Material[] materials = _renderer.materials;
+
+        // Iterate through each material and set its color
+        foreach (Material mat in materials)
+        {
+            Debug.LogWarning(mat.name);
+            if (mat.name.Contains("Slime3")) // Check if the material has a "_Color" property
+            {
+                mat.color = GetRandomColor();
+                break;
+            }
+        }
         gameObject.transform.LookAt(_playerGameObject.transform);
         gameObject.SetActive(true);
         _enemyHealthComponent.ResetHealth();
-
         foreach (GameObject bubbleSocket in bubbleSockets)
         {
             bubbleSocket.SetActive(false);
@@ -230,5 +245,10 @@ public class EnemyComponent : MonoBehaviour
                 UpdateState(EnemyState.Dying);
             }
         }
+    }
+    
+    private Color GetRandomColor()
+    {
+        return new Color(Random.value, Random.value, Random.value); // RGB random values between 0 and 1
     }
 }
