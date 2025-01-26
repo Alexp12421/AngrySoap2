@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class PlayerWater : MonoBehaviour
 {
     [SerializeField]
-    private int water = 100;
+    private float water = 100;
 
     [SerializeField]
     private bool hasWater = true;
@@ -13,7 +14,9 @@ public class PlayerWater : MonoBehaviour
     [SerializeField]
     GameObject moistureBar;
 
-    public void AddWater(int amount){
+    [SerializeField] private float regenAmount = 0.5f;
+
+    public void AddWater(float amount){
         if(water <= 0){
             hasWater = true;
         }
@@ -41,11 +44,16 @@ public class PlayerWater : MonoBehaviour
         moistureBar.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
     }
 
-    public int GetWater(){
+    public float GetWater(){
         return water;
     }
 
     public bool HasWater(){
         return hasWater;
+    }
+
+    private void Update()
+    {
+        AddWater(regenAmount * Time.deltaTime);
     }
 }

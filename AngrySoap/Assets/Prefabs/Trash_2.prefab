@@ -116,6 +116,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseMonstersByThreshold: 1
+  healthPickup: {fileID: 1162519691929606617, guid: 22d15e60bed141e4d810e78013016073,
+    type: 3}
+  waterPickup: {fileID: 4868866017689998324, guid: 35a368152b8c75f4eb6341f203b3d233,
+    type: 3}
 --- !u!1001 &3997085884789887795
 PrefabInstance:
   m_ObjectHideFlags: 0

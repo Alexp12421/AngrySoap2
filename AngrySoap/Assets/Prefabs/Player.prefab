@@ -311,6 +311,7 @@ MonoBehaviour:
   water: 100
   hasWater: 1
   moistureBar: {fileID: 0}
+  regenAmount: 0.5
 --- !u!114 &5606627194848136175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,9 +324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bee7554f7990949b4addbbf3d8f019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   health: 10
   isAlive: 1
   animatorController: {fileID: 0}
+  lostBox: {fileID: 0}
+  healthBox: {fileID: 0}
 --- !u!114 &4971466001348567667
 MonoBehaviour:
   m_ObjectHideFlags: 0

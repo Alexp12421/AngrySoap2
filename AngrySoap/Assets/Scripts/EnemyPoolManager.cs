@@ -13,7 +13,7 @@ public class EnemyPoolManager : MonoBehaviour
     [SerializeField] private GameObject enemyType;
     [SerializeField] private List<EnemyComponent> enemyComponents = new List<EnemyComponent>();
 
-    [SerializeField] private float maxSpawnRangeDistance = 10.0f;
+    [SerializeField] private float maxSpawnRangeDistance = 20.0f;
 
     [SerializeField] private float MinSpawnDelay = 2.5f;
     [SerializeField] private float MaxSpawnDelay = 4.0f;
@@ -115,10 +115,8 @@ public class EnemyPoolManager : MonoBehaviour
 
     private void SpawnAtRandomLocation(EnemyComponent enemyComponent)
     {
-        float randomX = Random.Range(transform.position.x - maxSpawnRangeDistance,
-            transform.position.x + maxSpawnRangeDistance);
-        float randomZ = Random.Range(transform.position.z - maxSpawnRangeDistance,
-            transform.position.z + maxSpawnRangeDistance);
+        float randomX = Random.Range(-maxSpawnRangeDistance, maxSpawnRangeDistance);
+        float randomZ = Random.Range(-maxSpawnRangeDistance, maxSpawnRangeDistance);
         enemyComponent.gameObject.transform.SetPositionAndRotation(new Vector3(randomX, 0, randomZ),
             Quaternion.identity);
         enemyComponent.UpdateState(EnemyState.Initialize);
@@ -167,7 +165,7 @@ public class EnemyPoolManager : MonoBehaviour
             {
                 if (enemyComponents[i].GetCurrentState() == EnemyState.Inactive)
                 {
-                    enemyComponents[i].UpdateState(EnemyState.Initialize);
+                    SpawnAtRandomLocation(enemyComponents[i]);
                     increaseAmount--;
                     if (increaseAmount == 0)
                     {
