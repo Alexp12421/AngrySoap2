@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 3859175350726786171}
   - component: {fileID: 5606627194848136175}
   - component: {fileID: 4971466001348567667}
-  - component: {fileID: 8247890412027964228}
   - component: {fileID: 9078758683245799056}
   - component: {fileID: 3503634317670577686}
   - component: {fileID: 2708940507656896049}
@@ -155,7 +154,7 @@ MonoBehaviour:
     m_ActionName: Player/Dash[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8247890412027964228}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerDetonateBubbles, Assembly-CSharp
         m_MethodName: OnDetonate
         m_Mode: 0
@@ -310,6 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   isAlive: 1
+  animatorController: {fileID: 0}
 --- !u!114 &4971466001348567667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 15
   dashDuration: 0.5
-  dashCoolDown: 1
+  dashCoolDown: 7
   canDash: 1
   waterCost: 5
   PlayerVisual: {fileID: 8483095382739493607}
@@ -342,11 +342,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17525acd21be25a458c4f290809900c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonateCoolDown: 1
+  detonateCoolDown: 5
   canDetonate: 1
   waterCost: 5
   enemyPoolManager: {fileID: 0}
   animatorController: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!136 &3503634317670577686
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -395,7 +396,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2976505824020016381
 MonoBehaviour:

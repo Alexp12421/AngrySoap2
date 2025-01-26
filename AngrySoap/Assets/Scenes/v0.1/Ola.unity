@@ -123,6 +123,80 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &179454995 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2510391259597846889, guid: a380bd882ed10424b9a844b582b64bfc,
+    type: 3}
+  m_PrefabInstance: {fileID: 405472883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &264916112
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.371
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868866017689998324, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_Name
+      value: WaterPickUp (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 35a368152b8c75f4eb6341f203b3d233, type: 3}
 --- !u!1001 &405472883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -465,6 +539,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &699276770
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235138685076127082, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868866017689998324, guid: 35a368152b8c75f4eb6341f203b3d233,
+        type: 3}
+      propertyPath: m_Name
+      value: WaterPickUp (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 35a368152b8c75f4eb6341f203b3d233, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +790,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3859175350726786171, guid: cc8f1f33f38768547bbdd6583898ab13,
+        type: 3}
+      propertyPath: moistureBar
+      value: 
+      objectReference: {fileID: 179454995}
     - target: {fileID: 7124815598145502720, guid: cc8f1f33f38768547bbdd6583898ab13,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -849,6 +996,8 @@ SceneRoots:
   - {fileID: 1493693887}
   - {fileID: 4579992671455254757}
   - {fileID: 6955694920691329594}
+  - {fileID: 264916112}
+  - {fileID: 699276770}
   - {fileID: 405472883}
   - {fileID: 1812638025}
   - {fileID: 5567222225287388045}

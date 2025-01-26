@@ -17,15 +17,16 @@ public class PlayerWater : MonoBehaviour
         if(water <= 0){
             hasWater = true;
         }
-        water += amount;
+        water = Mathf.Clamp(water + amount, 0, 100);
+        UpdateMoistureBar();
     }
 
     public bool ConsumeWater(int amount){
-        if(water>=amount)
+        if(water >= amount)
         {
             water -= amount;
             hasWater = water > 0;
-            moistureBar.transform.rotation = Quaternion.Euler(0, 0,-90 - 1.8f * water);
+            UpdateMoistureBar();
             return true;
         }
         else
@@ -33,6 +34,11 @@ public class PlayerWater : MonoBehaviour
             hasWater = false;
             return false;
         }
+    }
+
+    private void UpdateMoistureBar(){
+        float rotationZ = Mathf.Lerp(-90, -270, water / 100f);
+        moistureBar.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
     }
 
     public int GetWater(){
