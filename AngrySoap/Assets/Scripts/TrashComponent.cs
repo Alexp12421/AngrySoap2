@@ -9,6 +9,10 @@ public class TrashComponent : MonoBehaviour
     private readonly float[] _healthThresholds = { 0.75f, 0.5f, 0.25f, 0f };
     private float _lastThresholdReached = 1.0f;
     [SerializeField] private int increaseMonstersByThreshold = 1;
+    [SerializeField] private GameObject healthPickup;
+    [SerializeField] private GameObject waterPickup;
+    [SerializeField] private float xRange = 10.0f;
+    [SerializeField] private float zRange = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -45,10 +49,20 @@ public class TrashComponent : MonoBehaviour
             if (currentPercentage <= threshold && _lastThresholdReached > threshold)
             {
                 Debug.LogError("THRESHOLD REACHED");
+                SpawnObjectAtRandomPosition(healthPickup);
+                SpawnObjectAtRandomPosition(waterPickup);
                 _lastThresholdReached = threshold;
                 _enemyPoolManager.IncreaseEnemyCount(increaseMonstersByThreshold);
                 break;
             }
         }
+    }
+
+    private void SpawnObjectAtRandomPosition(GameObject prefab)
+    {
+        float xPos = Random.Range(-xRange, xRange);
+        float zPos = Random.Range(-zRange, zRange);
+        Instantiate(prefab, new Vector3(xPos, 0, zPos), Quaternion.identity);
+        
     }
 }

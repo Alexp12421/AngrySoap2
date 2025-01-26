@@ -314,6 +314,7 @@ MonoBehaviour:
   water: 100
   hasWater: 1
   moistureBar: {fileID: 0}
+  regenAmount: 0.5
 --- !u!114 &5606627194848136175
 MonoBehaviour:
   m_ObjectHideFlags: 0
