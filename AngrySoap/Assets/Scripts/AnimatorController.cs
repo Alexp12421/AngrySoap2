@@ -153,7 +153,7 @@ public class AnimatorController : MonoBehaviour
 
     public void stopDancingGangnamStyle()
     {
-        animator.SetBool("isDancingGangnamStyle", true);
+        animator.SetBool("isDancingGangnamStyle", false);
     }
 
     public void startDancingShakeItOff()
@@ -163,7 +163,7 @@ public class AnimatorController : MonoBehaviour
 
     public void stopDancingShakeItOff()
     {
-        animator.SetBool("isDancingShakeItOff", true);
+        animator.SetBool("isDancingShakeItOff", false);
     }
 
     public void startDancingOMG()
@@ -173,6 +173,6 @@ public class AnimatorController : MonoBehaviour
 
     public void stopDancingOMG()
     {
-        animator.SetBool("isDancingOMG", true);
+        animator.SetBool("isDancingOMG", false);
     }
 }
