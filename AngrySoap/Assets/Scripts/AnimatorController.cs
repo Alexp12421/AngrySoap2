@@ -143,7 +143,7 @@ public class AnimatorController : MonoBehaviour
 
     public void stopAttack()
     {
-        animator.SetBool("isAttack", true);
+        animator.SetBool("isAttack", false);
     }
 
     public void startDancingGangnamStyle()
