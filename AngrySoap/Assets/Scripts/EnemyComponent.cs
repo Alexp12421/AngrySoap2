@@ -208,6 +208,7 @@ public class EnemyComponent : MonoBehaviour
         if (_currentState == EnemyState.Chasing && other.gameObject == _playerGameObject)
         {
             Debug.LogError("Player is attacked");
+            _playerGameObject.GetComponent<PlayerHealth>()?.TakeDamage(Random.Range(1, 5));
         }
         else if (_currentState == EnemyState.Chasing && other.gameObject.GetComponent<Bubble>() != null)
         {
