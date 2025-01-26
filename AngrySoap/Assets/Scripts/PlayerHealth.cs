@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private float maxHealth = 100;
+        
     [SerializeField]
-    private int health = 100;
+    private float health = 100;
 
     [SerializeField]
     private bool isAlive = true;
@@ -16,10 +19,16 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private GameObject lostBox;
     private float lostTimer = 2;
+    
+    [SerializeField] private GameObject healthBox;
+    private Slider _healthSlider;
 
     private void Start()
     {
+        health = maxHealth;
         animatorController = GetComponentInChildren<AnimatorController>();
+        _healthSlider = healthBox.GetComponent<Slider>();
+        UpdateHealthSlider();
     }
 
     private void Update()
@@ -48,20 +57,34 @@ public class PlayerHealth : MonoBehaviour
             gameObject.GetComponent<UIAbilities>().enabled = false;
             gameObject.GetComponent<PlayerInput>().enabled = false;
         }
+        UpdateHealthSlider();
     }
 
     public void Heal(int amount){
         health += amount;
-        if(health > 100){
-            health = 100;
+        if(health > maxHealth){
+            health = maxHealth;
         }
+        UpdateHealthSlider();
     }
 
-    public int GetHealth(){
+    public float GetHealth(){
         return health;
     }
 
     public bool IsAlive(){
         return isAlive;
+    }
+
+    private void UpdateHealthSlider()
+    {
+        if (health == 0)
+        {
+            _healthSlider.gameObject.SetActive(false);
+        }
+        else
+        {
+            _healthSlider.value = health/maxHealth;
+        }
     }
 }
