@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b34b6d0c03cb6408d4b5059203a953, type: 3}
   m_Name: WaterPickUp
   m_EditorClassIdentifier: 
-  waterAmount: 10
+  waterAmount: 20

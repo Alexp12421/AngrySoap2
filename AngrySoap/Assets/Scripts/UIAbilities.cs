@@ -47,11 +47,15 @@ public class UIAbilities : MonoBehaviour
 
     private float currentDoucheDashCooldown;
 
+    private AnimatorController animatorController;
+
 
    
     void Start()
     {
         Canvas = GameObject.Find("Canvas");
+
+        animatorController = GetComponentInChildren<AnimatorController>();
 
         BubbleShotImage = Canvas.transform.Find("BubbleShot").transform.Find("Icon (GREYED)").GetComponent<Image>();
         BubbleShotImage.fillAmount = 0;
@@ -116,9 +120,15 @@ public class UIAbilities : MonoBehaviour
     {
         if( Input.GetMouseButtonDown(1) && !isBubbleDetonateCooldown )
         {
-            isBubbleDetonateCooldown = true;
-            currentBubbleDetonateCooldown = BubbleDetonateCooldown;
+            StartCoroutine(BubbleDetonate());
         }
+    }
+
+    private IEnumerator BubbleDetonate()
+    {
+        yield return new WaitForSeconds(animatorController.animationClipLengths["Anim_Detonate"]/2.3f);
+        isBubbleDetonateCooldown = true;
+        currentBubbleDetonateCooldown = BubbleDetonateCooldown;
     }
     
     private void DoucheDashInput()

@@ -10,11 +10,20 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private bool isAlive = true;
 
+    [SerializeField]
+    private AnimatorController animatorController;
+
+    private void Start()
+    {
+        animatorController = GetComponentInChildren<AnimatorController>();
+    }
+
     public void TakeDamage(int damage){
         health -= damage;
         if(health <= 0){
             health = 0;
             isAlive = false;
+            animatorController.isDead();
         }
     }
 

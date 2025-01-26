@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 rotationTarget;
 
     [SerializeField]
+    private bool isUsingAbility = false;
+
+    [SerializeField]
     private GameObject PlayerVisual;
 
     [SerializeField]
@@ -20,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Vector3 move;
+
+    [SerializeField]
+    private AnimatorController animatorController;
 
     public void OnLook(InputAction.CallbackContext context)
     {
@@ -34,6 +40,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         VisualTransform = PlayerVisual.transform;
+        animatorController = PlayerVisual.GetComponent<AnimatorController>();
     }
 
     // Update is called once per frame
@@ -57,14 +64,32 @@ public class PlayerController : MonoBehaviour
             VisualTransform.rotation = Quaternion.Slerp(VisualTransform.rotation, rotation, 0.15F);
         }
         
+        
         move = new(moveInput.x, 0, moveInput.y);
+        
+        if (isUsingAbility)
+        {
+            return;
+        }
         
         if (move.magnitude > 1)
         {
             move.Normalize();
         }
-
+        if(move != Vector3.zero)
+        {
+            animatorController.startRunning();
+        }
+        else
+        {
+            animatorController.stopRunning();
+        }
         transform.Translate(speed * Time.deltaTime * move, Space.World);
+    }
+
+    public void usingAbility(bool isUsingAbility)
+    {
+        this.isUsingAbility = isUsingAbility;
     }
 
     public Vector3 GetMove()
