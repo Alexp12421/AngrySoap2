@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class EnemyPoolManager : MonoBehaviour
@@ -17,6 +18,10 @@ public class EnemyPoolManager : MonoBehaviour
     [SerializeField] private float MinSpawnDelay = 2.5f;
     [SerializeField] private float MaxSpawnDelay = 4.0f;
     [SerializeField] private float _curentSpawnDelay = 5.0f;
+    [SerializeField] private GameObject gameWonObject;
+    [SerializeField] private float gameWonDelay = 3.0f;
+    [SerializeField] private UIAbilities uiAbilities;
+    [SerializeField] private PlayerInput playerInput;
     private float _remainingSpawnDelay;
     private GameObject _playerObject;
     private bool _gameWon = false;
@@ -86,6 +91,23 @@ public class EnemyPoolManager : MonoBehaviour
                             break;
                         }
                     }
+                }
+            }
+        }
+        else
+        {
+            if (gameWonDelay > 0.0f)
+            {
+                gameWonDelay -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                if (gameWonObject.activeSelf == false)
+                {
+                    gameWonObject.SetActive(true);
+                    playerInput.enabled = false;
+                    uiAbilities.enabled = false;
+                    Time.timeScale = 0f;
                 }
             }
         }
