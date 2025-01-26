@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -34,15 +35,18 @@ public class EnemyComponent : MonoBehaviour
     [SerializeField] private GameObject stunSocket;
     [SerializeField] private int maxBubblesThreshold = 0;
     private int _overlappedBubblesCount;
-    
+
     [SerializeField] private float stunDuration = 3.5f;
     private float _remainingStunDuration = 0.0f;
-    
+
     private Rigidbody _rigidbody;
     [SerializeField] private GameObject enemyMesh;
 
     private Renderer _renderer;
     [SerializeField] private float maxMovementSpeed = 5.0f;
+
+    [SerializeField] private GameObject overlappedBubblesObj;
+    private TextMeshProUGUI _overlappedBubblesText;
 
 
     // Start is called before the first frame update
@@ -53,6 +57,7 @@ public class EnemyComponent : MonoBehaviour
         maxBubblesThreshold = bubbleSockets.Count;
         _rigidbody = GetComponent<Rigidbody>();
         _renderer = enemyMesh.GetComponent<Renderer>();
+        _overlappedBubblesText = overlappedBubblesObj.GetComponent<TextMeshProUGUI>();
         UpdateState(EnemyState.Inactive);
     }
 
@@ -69,8 +74,6 @@ public class EnemyComponent : MonoBehaviour
         {
             AttackPlayer();
         }
-
-        
     }
 
     private void FixedUpdate()
@@ -86,6 +89,7 @@ public class EnemyComponent : MonoBehaviour
                 }
 
                 _overlappedBubblesCount = 0;
+                PopulateOverlappedBubbles();
                 UpdateState(EnemyState.Chasing);
             }
         }
@@ -117,6 +121,8 @@ public class EnemyComponent : MonoBehaviour
             default:
                 break;
         }
+
+        PopulateOverlappedBubbles();
     }
 
     public EnemyState GetCurrentState()
@@ -144,6 +150,7 @@ public class EnemyComponent : MonoBehaviour
                 break;
             }
         }
+
         gameObject.transform.LookAt(_playerGameObject.transform);
         gameObject.SetActive(true);
         _enemyHealthComponent.ResetHealth();
@@ -151,9 +158,11 @@ public class EnemyComponent : MonoBehaviour
         {
             bubbleSocket.SetActive(false);
         }
+
         stunSocket.SetActive(false);
 
         _overlappedBubblesCount = 0;
+        PopulateOverlappedBubbles();
         UpdateState(EnemyState.Chasing);
     }
 
@@ -222,11 +231,13 @@ public class EnemyComponent : MonoBehaviour
                 UpdateState(EnemyState.Stunned);
             }
         }
+
+        PopulateOverlappedBubbles();
     }
 
     public bool SkipEnemy()
     {
-        return maxBubblesThreshold <= _overlappedBubblesCount || _currentState != EnemyState.Chasing ;
+        return maxBubblesThreshold <= _overlappedBubblesCount || _currentState != EnemyState.Chasing;
     }
 
     public void DetonateBubbles()
@@ -244,15 +255,61 @@ public class EnemyComponent : MonoBehaviour
                     bubbleSocket.SetActive(false);
                 }
             }
+
             if (_enemyHealthComponent.GetCurrentHealth() <= 0.0f)
             {
                 UpdateState(EnemyState.Dying);
             }
         }
+
+        PopulateOverlappedBubbles();
     }
-    
+
     private Color GetRandomColor()
     {
         return new Color(Random.value, Random.value, Random.value); // RGB random values between 0 and 1
+    }
+
+    private void PopulateOverlappedBubbles()
+    {
+        if (_overlappedBubblesText == null)
+        {
+            return;
+        }
+        switch (_currentState)
+        {
+            case EnemyState.Inactive:
+            case EnemyState.Initialize:
+            case EnemyState.Dying:
+                _overlappedBubblesText.text = "";
+                break;
+            case EnemyState.Chasing:
+                switch (_overlappedBubblesCount)
+                {
+                    case 1:
+                        _overlappedBubblesText.text = "1";
+                        _overlappedBubblesText.color = new Color(255 / 255f, 100 / 255f, 89 / 255f);
+                        break;
+                    case 2:
+                        _overlappedBubblesText.text = "2";
+                        _overlappedBubblesText.color = new Color(247 / 255f, 60 / 255f, 47 / 255f);
+                        break;
+                    case 3:
+                        _overlappedBubblesText.text = "3";
+                        _overlappedBubblesText.color = new Color(255 / 255f, 17 / 255f, 0);
+                        break;
+                    default:
+                        _overlappedBubblesText.text = "";
+                        break;
+                }
+
+                break;
+            case EnemyState.Stunned:
+                _overlappedBubblesText.text = "STUNNED";
+                _overlappedBubblesText.color = new Color(0, 0, 0);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }
