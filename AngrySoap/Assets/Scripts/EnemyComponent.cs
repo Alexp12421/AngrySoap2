@@ -47,6 +47,8 @@ public class EnemyComponent : MonoBehaviour
 
     [SerializeField] private GameObject overlappedBubblesObj;
     private TextMeshProUGUI _overlappedBubblesText;
+    
+    [SerializeField] private AudioManager audioSource;
 
 
     // Start is called before the first frame update
@@ -59,6 +61,8 @@ public class EnemyComponent : MonoBehaviour
         _renderer = enemyMesh.GetComponent<Renderer>();
         _overlappedBubblesText = overlappedBubblesObj.GetComponent<TextMeshProUGUI>();
         UpdateState(EnemyState.Inactive);
+        
+        audioSource = GameObject.Find("Player").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -185,6 +189,7 @@ public class EnemyComponent : MonoBehaviour
         _remainingStunDuration = stunDuration;
         stunSocket.SetActive(true);
         animator.speed = 0.0f;
+        audioSource.PlayEnemyStun(gameObject.transform.position);
     }
 
     private void AttackPlayer()
@@ -194,6 +199,7 @@ public class EnemyComponent : MonoBehaviour
             gameObject.transform.LookAt(_playerGameObject.transform);
             animator.SetTrigger(Attack);
             _navMeshAgent.SetDestination(transform.position);
+            audioSource.PlayEnemyJump(gameObject.transform.position);
         }
     }
 
@@ -260,6 +266,7 @@ public class EnemyComponent : MonoBehaviour
             if (_enemyHealthComponent.GetCurrentHealth() <= 0.0f)
             {
                 UpdateState(EnemyState.Dying);
+                audioSource.PlayEnemyDeath(gameObject.transform.position);
             }
         }
 
