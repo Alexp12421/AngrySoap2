@@ -46,8 +46,16 @@ public class PlayerSoapArmour : MonoBehaviour
 
     private Coroutine _disolveCoroutine;
 
+    [SerializeField]
+    private AnimatorController animatorController;
+
+    [SerializeField]
+    private PlayerController playerController;
+
     private void Start() {
         playerWater = GetComponent<PlayerWater>();
+        animatorController = GetComponentInChildren<AnimatorController>();
+        playerController = GetComponent<PlayerController>();
         _renderer = BubbleArmour.GetComponent<Renderer>();
         _renderer.material.SetFloat("_Disolve", 1);
         _renderer.material.SetFloat("_DistortionStrength", 0.3f);
@@ -116,11 +124,23 @@ public class PlayerSoapArmour : MonoBehaviour
         {
             if(!BubbleArmour.activeSelf)
                 BubbleArmour.SetActive(true);
+            animatorController.stopRunning();
+            animatorController.startShield();
             _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(0));
+            playerController.usingAbility(true);
+            Invoke(nameof(StopAbility), animatorController.animationClipLengths["Anim_Shield"]);
             gameObject.GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
             bubbleTrailCoroutine = StartCoroutine(SpawnBubbleTrail());
             StartCoroutine(ConsumeWaterWhileActive()); 
         }
+    }
+
+    private void StopAbility()
+    {
+        animatorController.stopRunning();
+        playerController.usingAbility(false);
+        animatorController.stopShield();
+        // animatorController.stopRunning();
     }
 
     private IEnumerator ConsumeWaterWhileActive()

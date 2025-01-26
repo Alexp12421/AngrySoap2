@@ -17,6 +17,14 @@ public class PlayerDetonateBubbles : MonoBehaviour
     [SerializeField]
     private EnemyPoolManager enemyPoolManager;
 
+    [SerializeField]
+    private AnimatorController animatorController;
+
+    void Start()
+    {
+        animatorController = GetComponentInChildren<AnimatorController>();
+    }
+
     public void OnDetonate(InputAction.CallbackContext context)
     {
         if (context.started)
