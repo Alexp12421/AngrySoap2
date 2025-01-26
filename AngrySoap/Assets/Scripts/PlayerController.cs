@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public bool playingFootsteps = false;
     public float speed;
     private Vector2 moveInput, mouselook;
 
@@ -27,6 +28,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private AnimatorController animatorController;
 
+    private AudioManager audioManager;
+    
+
     public void OnLook(InputAction.CallbackContext context)
     {
         mouselook = context.ReadValue<Vector2>();
@@ -41,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         VisualTransform = PlayerVisual.transform;
         animatorController = PlayerVisual.GetComponent<AnimatorController>();
+        audioManager = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -79,12 +84,28 @@ public class PlayerController : MonoBehaviour
         if(move != Vector3.zero)
         {
             animatorController.startRunning();
+            if (!playingFootsteps)
+            {
+                StartCoroutine(PlayFootsteps());
+            }
         }
         else
         {
             animatorController.stopRunning();
+            // if(playingFootsteps)
+            // {
+            //     audioManager.StopFootSteps();
+            //     playingFootsteps = false;
+            // }
         }
         transform.Translate(speed * Time.deltaTime * move, Space.World);
+    }
+
+    private IEnumerator PlayFootsteps()
+    {
+        playingFootsteps = true;
+        yield return new WaitForSeconds(audioManager.PlayFootSteps().length);
+        playingFootsteps = false;
     }
 
     public void usingAbility(bool isUsingAbility)

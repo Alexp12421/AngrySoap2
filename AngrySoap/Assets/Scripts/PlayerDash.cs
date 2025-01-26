@@ -31,11 +31,14 @@ public class PlayerDash : MonoBehaviour
     [SerializeField]
     private AnimatorController animatorController;
 
+    private AudioManager audioManager;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         VisualTransform = PlayerVisual.transform;
         animatorController = PlayerVisual.GetComponent<AnimatorController>();
+        audioManager = GetComponent<AudioManager>();
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -59,6 +62,7 @@ public class PlayerDash : MonoBehaviour
             moveDirection = VisualTransform.forward;
         }
         Vector3 DashForce = moveDirection * dashSpeed;
+        audioManager.PlayDash();
         rb.AddForce(DashForce, ForceMode.Impulse);
         animatorController.startRunning();
         animatorController.startDashing();

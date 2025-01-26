@@ -30,9 +30,12 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private bool isShooting = false;
 
+    private AudioManager audioManager;
+
     private AnimatorController animatorController;
 
     private void Start() {
+        audioManager = GetComponent<AudioManager>();
         playerWater = GetComponent<PlayerWater>();
         animatorController = GetComponentInChildren<AnimatorController>();
     }
@@ -78,6 +81,7 @@ public class PlayerShoot : MonoBehaviour
             animatorController.startAttack();
             if (canShoot && playerWater.ConsumeWater(waterCost)) // Check if we can shoot
             {
+                audioManager.PlayAttack();
                 Shoot();
                 StartCoroutine(ShootCooldown()); // Start the cooldown
             }

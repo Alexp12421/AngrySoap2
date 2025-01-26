@@ -52,6 +52,8 @@ public class PlayerSoapArmour : MonoBehaviour
     [SerializeField]
     private PlayerController playerController;
 
+    private AudioManager audioManager;
+
     private void Start() {
         playerWater = GetComponent<PlayerWater>();
         animatorController = GetComponentInChildren<AnimatorController>();
@@ -59,6 +61,7 @@ public class PlayerSoapArmour : MonoBehaviour
         _renderer = BubbleArmour.GetComponent<Renderer>();
         _renderer.material.SetFloat("_Disolve", 1);
         _renderer.material.SetFloat("_DistortionStrength", 0.3f);
+        audioManager = GetComponent<AudioManager>();
     }
 
     public void OnToggleArmour(InputAction.CallbackContext context)
@@ -105,6 +108,7 @@ public class PlayerSoapArmour : MonoBehaviour
         // BubbleArmour.SetActive(false);
         gameObject.GetComponent<CapsuleCollider>().excludeLayers = 0;
         isArmourActive = false;
+        audioManager.PlayShield();
         if (bubbleTrailCoroutine != null)
         {
             StopCoroutine(bubbleTrailCoroutine);
@@ -127,6 +131,7 @@ public class PlayerSoapArmour : MonoBehaviour
             animatorController.stopRunning();
             animatorController.startShield();
             _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(0));
+            audioManager.PlayShield();
             playerController.usingAbility(true);
             Invoke(nameof(StopAbility), animatorController.animationClipLengths["Anim_Shield"]);
             gameObject.GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");

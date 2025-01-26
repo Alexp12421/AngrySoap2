@@ -23,10 +23,13 @@ public class PlayerDetonateBubbles : MonoBehaviour
     [SerializeField]
     private PlayerController playerController;
 
+    private AudioManager audioManager;
+
     void Start()
     {
         animatorController = GetComponentInChildren<AnimatorController>();
         playerController = GetComponent<PlayerController>();
+        audioManager = GetComponent<AudioManager>();
     }
 
     public void OnDetonate(InputAction.CallbackContext context)
@@ -53,7 +56,8 @@ public class PlayerDetonateBubbles : MonoBehaviour
     }
 
     private IEnumerator DetonateAnimation()
-    {
+    {   
+        audioManager.PlayDetonate();
         yield return new WaitForSeconds(animatorController.animationClipLengths["Anim_Detonate"]/2);
         animatorController.stopDetonate();
         playerController.usingAbility(false);
