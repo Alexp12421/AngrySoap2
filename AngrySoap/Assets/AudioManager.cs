@@ -72,7 +72,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlayEnemyStun(Vector3 position){
-        AudioSource.PlayClipAtPoint(EnemyStunAudio, position);
+        AudioSource.PlayClipAtPoint(EnemyStunAudio, position, 1.5f);
     }
 
     public void PlayBackground(){
