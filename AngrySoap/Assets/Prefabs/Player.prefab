@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 2708940507656896049}
   - component: {fileID: 2976505824020016381}
   - component: {fileID: 6067274901814048033}
+  - component: {fileID: 1447629443584458630}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -325,10 +326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bee7554f7990949b4addbbf3d8f019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   health: 10
   isAlive: 1
   animatorController: {fileID: 0}
   lostBox: {fileID: 0}
+  healthBox: {fileID: 0}
 --- !u!114 &4971466001348567667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +466,33 @@ MonoBehaviour:
   EnemyJumpAudio: {fileID: 8300000, guid: 849162c70ade1854da67b943dcfdec00, type: 3}
   EnemyDeathAudio: {fileID: 8300000, guid: 6b28b3f324084794b9e558711d6bd16e, type: 3}
   EnemyStunAudio: {fileID: 8300000, guid: 42f74a37711c8c444b178311656da0bf, type: 3}
+  WinAudio: {fileID: 0}
+  LoseAudio: {fileID: 0}
+  BackGroundSound: {fileID: 8300000, guid: c5feacc116c49bc4c9b45c8e16f36479, type: 3}
+  audioSource: {fileID: 0}
+--- !u!114 &1447629443584458630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994389963096404517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e9a8b8eb4c862408abb0a3d03ca60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickAudio: {fileID: 8300000, guid: 907a8fa250f10e14b884bfe59221b1d4, type: 3}
+  AttackAudio: {fileID: 8300000, guid: b9830e7384b921f43b6b5e9d1a2aeb90, type: 3}
+  DashAudio: {fileID: 8300000, guid: 8e63407c515c2f74cb9c95f61513c7e6, type: 3}
+  ShieldAudio: {fileID: 8300000, guid: 7133dee69b9c5eb4ea862db5849c2033, type: 3}
+  DetonateAudio: {fileID: 8300000, guid: 285b3a93283b8a84ea3ab2dc14467d5c, type: 3}
+  FootStepsAudio: {fileID: 8300000, guid: 5bdc1f4ce09260c409fdf8539bcf0cae, type: 3}
+  EnemyJumpAudio: {fileID: 8300000, guid: 849162c70ade1854da67b943dcfdec00, type: 3}
+  EnemyDeathAudio: {fileID: 8300000, guid: 6b28b3f324084794b9e558711d6bd16e, type: 3}
+  EnemyStunAudio: {fileID: 8300000, guid: 42f74a37711c8c444b178311656da0bf, type: 3}
+  WinAudio: {fileID: 8300000, guid: 773c1d7459ed60443b5b7cc41229979f, type: 3}
+  LoseAudio: {fileID: 8300000, guid: a2edb63c63ebfe14183d8c3d66e7b2c1, type: 3}
   BackGroundSound: {fileID: 8300000, guid: c5feacc116c49bc4c9b45c8e16f36479, type: 3}
   audioSource: {fileID: 0}
 --- !u!1 &4228623822638630237

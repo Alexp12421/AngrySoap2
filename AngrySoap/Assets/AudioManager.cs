@@ -19,6 +19,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip EnemyStunAudio;
 
 
+    public AudioClip WinAudio;
+    public AudioClip LoseAudio;
+
+
+
     public AudioClip BackGroundSound;
 
     [SerializeField]
@@ -74,6 +79,14 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = BackGroundSound;
         audioSource.loop = true;
         audioSource.Play();
+    }
+
+    public void PlayWin(){
+        audioSource.PlayOneShot(WinAudio);
+    }
+
+    public void PlayLose(){
+        audioSource.PlayOneShot(LoseAudio);
     }
 
 }

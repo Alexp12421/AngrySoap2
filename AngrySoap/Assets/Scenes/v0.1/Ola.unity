@@ -310,6 +310,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6395482423360844645, guid: a380bd882ed10424b9a844b582b64bfc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -735,35 +740,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a368152b8c75f4eb6341f203b3d233, type: 3}
---- !u!1 &777564820 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 994389963096404517, guid: cc8f1f33f38768547bbdd6583898ab13,
-    type: 3}
-  m_PrefabInstance: {fileID: 4579992671455254757}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &777564833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777564820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66e9a8b8eb4c862408abb0a3d03ca60f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClickAudio: {fileID: 8300000, guid: 907a8fa250f10e14b884bfe59221b1d4, type: 3}
-  AttackAudio: {fileID: 8300000, guid: b9830e7384b921f43b6b5e9d1a2aeb90, type: 3}
-  DashAudio: {fileID: 8300000, guid: 8e63407c515c2f74cb9c95f61513c7e6, type: 3}
-  ShieldAudio: {fileID: 8300000, guid: 7133dee69b9c5eb4ea862db5849c2033, type: 3}
-  DetonateAudio: {fileID: 8300000, guid: 285b3a93283b8a84ea3ab2dc14467d5c, type: 3}
-  FootStepsAudio: {fileID: 8300000, guid: 5bdc1f4ce09260c409fdf8539bcf0cae, type: 3}
-  EnemyJumpAudio: {fileID: 8300000, guid: 849162c70ade1854da67b943dcfdec00, type: 3}
-  EnemyDeathAudio: {fileID: 8300000, guid: 6b28b3f324084794b9e558711d6bd16e, type: 3}
-  EnemyStunAudio: {fileID: 8300000, guid: 42f74a37711c8c444b178311656da0bf, type: 3}
-  BackGroundSound: {fileID: 8300000, guid: c5feacc116c49bc4c9b45c8e16f36479, type: 3}
-  audioSource: {fileID: 654703640}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +923,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1447629443584458630, guid: cc8f1f33f38768547bbdd6583898ab13,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 654703640}
     - target: {fileID: 3859175350726786171, guid: cc8f1f33f38768547bbdd6583898ab13,
         type: 3}
       propertyPath: moistureBar
@@ -1005,11 +986,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 994389963096404517, guid: cc8f1f33f38768547bbdd6583898ab13,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 777564833}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc8f1f33f38768547bbdd6583898ab13, type: 3}
 --- !u!1001 &5567222225287388045
 PrefabInstance:
