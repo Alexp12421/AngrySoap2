@@ -42,6 +42,7 @@ public class EnemyComponent : MonoBehaviour
     [SerializeField] private GameObject enemyMesh;
 
     private Renderer _renderer;
+    [SerializeField] private float maxMovementSpeed = 5.0f;
 
 
     // Start is called before the first frame update
@@ -94,6 +95,7 @@ public class EnemyComponent : MonoBehaviour
     {
         animator.speed = 1.0f;
         _currentState = newState;
+        _navMeshAgent.speed = maxMovementSpeed;
         stunSocket.SetActive(false);
         switch (_currentState)
         {
@@ -194,7 +196,7 @@ public class EnemyComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == _playerGameObject)
+        if (_currentState == EnemyState.Chasing && other.gameObject == _playerGameObject)
         {
             Debug.LogError("Player is attacked");
         }
@@ -212,6 +214,8 @@ public class EnemyComponent : MonoBehaviour
                         break;
                     }
                 }
+
+                _navMeshAgent.speed = maxMovementSpeed - _overlappedBubblesCount;
             }
             else if (_overlappedBubblesCount == maxBubblesThreshold)
             {
