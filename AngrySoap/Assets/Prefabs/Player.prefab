@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3859175350726786171}
   - component: {fileID: 5606627194848136175}
   - component: {fileID: 4971466001348567667}
+  - component: {fileID: 8247890412027964228}
   - component: {fileID: 9078758683245799056}
   - component: {fileID: 3503634317670577686}
   - component: {fileID: 2708940507656896049}
@@ -154,7 +155,7 @@ MonoBehaviour:
     m_ActionName: Player/Dash[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9078758683245799056}
+      - m_Target: {fileID: 8247890412027964228}
         m_TargetAssemblyTypeName: PlayerDetonateBubbles, Assembly-CSharp
         m_MethodName: OnDetonate
         m_Mode: 0
@@ -204,7 +205,7 @@ MonoBehaviour:
   playerWater: {fileID: 0}
   waterCost: 1
   BulletSpawn: {fileID: 540768166561729261}
-  Bullet: {fileID: 5104116644707398841, guid: fb708d542de30bf4981e4fba7b231e80, type: 3}
+  Bullet: {fileID: 5104116644707398841, guid: 8ff31cb04c2524248a200714b1021bd4, type: 3}
   baseCoolDown: 0.5
   attackSpeed: 1
   canShoot: 1
@@ -290,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   water: 100
   hasWater: 1
+  moistureBar: {fileID: 0}
 --- !u!114 &5606627194848136175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +325,22 @@ MonoBehaviour:
   waterCost: 5
   PlayerVisual: {fileID: 8525141428414989734}
   VisualTransform: {fileID: 0}
+--- !u!114 &8247890412027964228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994389963096404517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17525acd21be25a458c4f290809900c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detonateCoolDown: 1
+  canDetonate: 1
+  waterCost: 5
+  enemyPoolManager: {fileID: 0}
 --- !u!114 &9078758683245799056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +726,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5408123853823120234}
+    - targetCorrespondingSourceObject: {fileID: 5104116644707398841, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7610013065343564196}
+    - targetCorrespondingSourceObject: {fileID: 5104116644707398841, guid: 7c6f836a6626e704e9e1e7bb6a3b990a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8534392305416702420}
   m_SourcePrefab: {fileID: 100100000, guid: 7c6f836a6626e704e9e1e7bb6a3b990a, type: 3}
 --- !u!4 &4175900649442140043 stripped
 Transform:
@@ -734,6 +760,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5408123853823120234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239411146643211334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd2fc5f4438aba428338b9b73050b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7610013065343564196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239411146643211334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959970e27fde1c048a18f605a68c5b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8534392305416702420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
