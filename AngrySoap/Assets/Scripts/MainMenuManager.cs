@@ -9,6 +9,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject informationPannel;
     [SerializeField] private AudioSource clip;
+    [SerializeField] private AudioManager audioManager;
     private bool toggle;
 
     // Start is called before the first frame update
@@ -16,23 +17,30 @@ public class MainMenuManager : MonoBehaviour
     {
         toggle = true;
         informationPannel.SetActive(false);
+        audioManager = GetComponent<AudioManager>();
 
-        DontDestroyOnLoad(clip);
+        if(!clip.isPlaying)
+        {
+            clip.Play();
+            DontDestroyOnLoad(clip);
+        }
     }
 
     public void StartGame()
     {
-        //SceneManager.LoadScene("");
-        Debug.Log("You pressed Play!");
+        audioManager.PlayClick();
+        SceneManager.LoadScene("Final_Map");
     }
 
     public void QuitGame()
     {
+        audioManager.PlayClick();
         Application.Quit();
     }
 
     public void toggleInstructions()
     {
+        audioManager.PlayClick();
         informationPannel.SetActive(toggle);
         toggle = !toggle;
     }

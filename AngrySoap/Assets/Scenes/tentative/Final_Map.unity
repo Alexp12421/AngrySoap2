@@ -408,6 +408,11 @@ PrefabInstance:
       propertyPath: gameWonObject
       value: 
       objectReference: {fileID: 379252159}
+    - target: {fileID: 6996116193144742735, guid: f913ff12ae781cf43a842ec5e75832cf,
+        type: 3}
+      propertyPath: numberOfEnemies
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7356448861476142391, guid: f913ff12ae781cf43a842ec5e75832cf,
         type: 3}
       propertyPath: m_Name
@@ -1346,8 +1351,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 788413458675667246, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
+      propertyPath: m_Size.y
+      value: 0.2532338
+      objectReference: {fileID: 0}
+    - target: {fileID: 788413458675667246, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
       propertyPath: m_Center.x
       value: -1.8156695
+      objectReference: {fileID: 0}
+    - target: {fileID: 788413458675667246, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.37338686
       objectReference: {fileID: 0}
     - target: {fileID: 788413458675667246, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
@@ -1411,8 +1426,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3430711076903631629, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
+      propertyPath: m_Size.y
+      value: 0.2532338
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430711076903631629, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
       propertyPath: m_Center.x
       value: -1.8156695
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430711076903631629, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.37338686
       objectReference: {fileID: 0}
     - target: {fileID: 3430711076903631629, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
@@ -1426,8 +1451,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3505405990679560796, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
+      propertyPath: m_Size.y
+      value: 0.2532338
+      objectReference: {fileID: 0}
+    - target: {fileID: 3505405990679560796, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
       propertyPath: m_Center.x
       value: -1.8156695
+      objectReference: {fileID: 0}
+    - target: {fileID: 3505405990679560796, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.37338686
       objectReference: {fileID: 0}
     - target: {fileID: 3505405990679560796, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
@@ -1441,8 +1476,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3863559817343640001, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
+      propertyPath: m_Size.y
+      value: 0.2532338
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863559817343640001, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
       propertyPath: m_Center.x
       value: -1.8156695
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863559817343640001, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.37338686
       objectReference: {fileID: 0}
     - target: {fileID: 3863559817343640001, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
@@ -1456,8 +1501,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3886347950442114991, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
+      propertyPath: m_Size.y
+      value: 0.2532338
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886347950442114991, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
       propertyPath: m_Center.x
       value: -1.8156695
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886347950442114991, guid: ab3303b9ecf89664a84583203d29f7b6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.37338686
       objectReference: {fileID: 0}
     - target: {fileID: 3886347950442114991, guid: ab3303b9ecf89664a84583203d29f7b6,
         type: 3}
