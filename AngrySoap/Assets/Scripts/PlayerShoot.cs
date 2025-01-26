@@ -30,8 +30,11 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private bool isShooting = false;
 
+    private AnimatorController animatorController;
+
     private void Start() {
         playerWater = GetComponent<PlayerWater>();
+        animatorController = GetComponentInChildren<AnimatorController>();
     }
 
     public void OnShoot(InputAction.CallbackContext context)
@@ -46,6 +49,7 @@ public class PlayerShoot : MonoBehaviour
         if (context.canceled)
         {
             isShooting = false;
+            animatorController.stopAttack();
         }
         
     }
@@ -71,6 +75,7 @@ public class PlayerShoot : MonoBehaviour
     {
         while (isShooting) // Continue while the button is held down
         {
+            animatorController.startAttack();
             if (canShoot && playerWater.ConsumeWater(waterCost)) // Check if we can shoot
             {
                 Shoot();
