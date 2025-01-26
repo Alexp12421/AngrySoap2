@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 3859175350726786171}
   - component: {fileID: 5606627194848136175}
   - component: {fileID: 4971466001348567667}
-  - component: {fileID: 8247890412027964228}
   - component: {fileID: 9078758683245799056}
   - component: {fileID: 3503634317670577686}
   - component: {fileID: 2708940507656896049}
@@ -155,7 +154,7 @@ MonoBehaviour:
     m_ActionName: Player/Dash[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8247890412027964228}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerDetonateBubbles, Assembly-CSharp
         m_MethodName: OnDetonate
         m_Mode: 0
@@ -187,9 +186,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  isUsingAbility: 0
   PlayerVisual: {fileID: 8483095382739493607}
   VisualTransform: {fileID: 162419515398432963}
   move: {x: 0, y: 0, z: 0}
+  animatorController: {fileID: 0}
 --- !u!114 &6649236553743178242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +278,8 @@ MonoBehaviour:
   _DisplacementMagnitude: 0.4
   _LerpSpeed: 2
   _DisolveSpeed: 1
+  animatorController: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!114 &3859175350726786171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   isAlive: 1
+  animatorController: {fileID: 0}
 --- !u!114 &4971466001348567667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,27 +324,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 15
   dashDuration: 0.5
-  dashCoolDown: 1
+  dashCoolDown: 7
   canDash: 1
   waterCost: 5
-  PlayerVisual: {fileID: 8525141428414989734}
+  PlayerVisual: {fileID: 8483095382739493607}
   VisualTransform: {fileID: 0}
---- !u!114 &8247890412027964228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994389963096404517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17525acd21be25a458c4f290809900c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detonateCoolDown: 1
-  canDetonate: 1
-  waterCost: 5
-  enemyPoolManager: {fileID: 0}
+  animatorController: {fileID: 0}
 --- !u!114 &9078758683245799056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,10 +342,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17525acd21be25a458c4f290809900c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonateCoolDown: 1
+  detonateCoolDown: 5
   canDetonate: 1
   waterCost: 5
   enemyPoolManager: {fileID: 0}
+  animatorController: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!136 &3503634317670577686
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -405,7 +396,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2976505824020016381
 MonoBehaviour:
@@ -870,7 +861,15 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 540768166561729261}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11b2840092509b14da01d713f15bace2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5376824144435168267}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11b2840092509b14da01d713f15bace2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2918369140285762265}
   m_SourcePrefab: {fileID: 100100000, guid: 11b2840092509b14da01d713f15bace2, type: 3}
 --- !u!4 &162419515398432963 stripped
 Transform:
@@ -884,6 +883,42 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8753708634723884982}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5376824144435168267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8483095382739493607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383694134ce4ee34a862b4bb7784d32e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationClipLengths:
+    m_Keys: []
+    m_Values: []
+--- !u!95 &2918369140285762265
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8483095382739493607}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 58d36f000865e054aa0dc3069b7c5a19, type: 3}
+  m_Controller: {fileID: 9100000, guid: 26826f08f9b8fb5499a909ca083f37c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &9147324189378738269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 11b2840092509b14da01d713f15bace2,
@@ -1022,12 +1057,6 @@ PrefabInstance:
       addedObject: {fileID: 4354307932842906051}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6adff15acb306804c8ef05899e530b34, type: 3}
---- !u!1 &8525141428414989734 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adff15acb306804c8ef05899e530b34,
-    type: 3}
-  m_PrefabInstance: {fileID: 8831008185220954359}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9008521256916754204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6adff15acb306804c8ef05899e530b34,

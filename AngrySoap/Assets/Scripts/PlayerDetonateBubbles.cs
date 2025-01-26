@@ -17,6 +17,18 @@ public class PlayerDetonateBubbles : MonoBehaviour
     [SerializeField]
     private EnemyPoolManager enemyPoolManager;
 
+    [SerializeField]
+    private AnimatorController animatorController;
+
+    [SerializeField]
+    private PlayerController playerController;
+
+    void Start()
+    {
+        animatorController = GetComponentInChildren<AnimatorController>();
+        playerController = GetComponent<PlayerController>();
+    }
+
     public void OnDetonate(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -31,8 +43,19 @@ public class PlayerDetonateBubbles : MonoBehaviour
 
     private IEnumerator Detonate()
     {
+        animatorController.stopRunning();
+        animatorController.startDetonate();
+        playerController.usingAbility(true);
+        StartCoroutine(DetonateAnimation());
         enemyPoolManager.DetonateBubbles();
         yield return new WaitForSeconds(detonateCoolDown);
         canDetonate = true;
+    }
+
+    private IEnumerator DetonateAnimation()
+    {
+        yield return new WaitForSeconds(animatorController.animationClipLengths["Anim_Detonate"]/2);
+        animatorController.stopDetonate();
+        playerController.usingAbility(false);
     }
 }

@@ -28,10 +28,14 @@ public class PlayerDash : MonoBehaviour
     [SerializeField]
     private Transform VisualTransform;
 
+    [SerializeField]
+    private AnimatorController animatorController;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         VisualTransform = PlayerVisual.transform;
+        animatorController = PlayerVisual.GetComponent<AnimatorController>();
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -56,6 +60,9 @@ public class PlayerDash : MonoBehaviour
         }
         Vector3 DashForce = moveDirection * dashSpeed;
         rb.AddForce(DashForce, ForceMode.Impulse);
+        animatorController.startRunning();
+        animatorController.startDashing();
+        // animator.runtimeAnimatorController.animationClips
         Invoke(nameof(StopDash), dashDuration);
         yield return new WaitForSeconds(dashCoolDown);
         canDash = true;
@@ -64,5 +71,6 @@ public class PlayerDash : MonoBehaviour
     private void StopDash()
     {
         rb.velocity = Vector3.zero;
+        animatorController.stopDashing();
     }
 }
