@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1854449072705525105}
   - component: {fileID: 7827814466751285610}
   m_Layer: 0
-  m_Name: Bubble
+  m_Name: BubbleProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 944e1bb8a264ca64ab94ba70d8dc262e, type: 2}
+  - {fileID: 2100000, guid: 1bda9607c9406e74d84dbcbabf4aeb77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
